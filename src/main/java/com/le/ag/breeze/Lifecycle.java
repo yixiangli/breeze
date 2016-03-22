@@ -1,5 +1,6 @@
 package com.le.ag.breeze;
 
+import com.le.ag.breeze.exception.LifecycleException;
 import com.le.ag.breeze.listener.LifecycleListener;
 
 /**
@@ -12,11 +13,16 @@ public interface Lifecycle {
 
     // ----------------------------------------------------- Manifest Constants
     /**
-     * The LifecycleEvent type for the "component after init" event.
+     * The LifecycleEvent type for the "component before init" event.
      */
     public static final String BEFORE_INIT_EVENT = "before_init";
 
-
+    /*
+     * The LifecycleEvent type for the "component init" event.
+     */
+    public static final String INIT_EVENT = "init";
+    
+    
     /**
      * The LifecycleEvent type for the "component after init" event.
      */
@@ -76,7 +82,7 @@ public interface Lifecycle {
 	 * @param
 	 * @return
 	 */
-	void init();
+	void init() throws LifecycleException;
 
 	/**
 	 * 
@@ -85,7 +91,7 @@ public interface Lifecycle {
 	 * @param
 	 * @return
 	 */
-	void start();
+	void start() throws LifecycleException;
 	
 	/**
 	 * 
@@ -94,7 +100,7 @@ public interface Lifecycle {
 	 * @param
 	 * @return
 	 */
-	void stop();
+	void stop() throws LifecycleException;
 	
 	
 	/**
@@ -103,7 +109,7 @@ public interface Lifecycle {
 	 * @param
 	 * @return
 	 */
-	void destory();
+	void destory() throws LifecycleException;
 	
 	
 	void addLifecycleListener(LifecycleListener lister);

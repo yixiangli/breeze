@@ -1,31 +1,14 @@
 package com.le.ag.breeze.component;
 
-import com.le.ag.breeze.listener.LifecycleListener;
+import com.le.ag.breeze.LifecycleBase;
 
-public abstract class StandardComponent implements Component {
+/**
+ * 
+ * @author liyixiang <liyixiang@letv.com>
+ * @date 2016年3月11日
+ * @use 标准组件
+ */
+public abstract class StandardComponent extends LifecycleBase implements Component {
 
-	@Override
-	public abstract void start();
-
-	@Override
-	public abstract void stop();
-
-	@Override
-	public void addLifecycleListener(LifecycleListener lister) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeLifecycleListener() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public LifecycleListener[] findLifecycleListeners() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }
