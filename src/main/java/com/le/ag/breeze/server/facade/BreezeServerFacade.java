@@ -28,7 +28,12 @@ public class BreezeServerFacade{
 			 
 		}
 		//启动服务
-		//server.start();
+		try{
+			server.start();
+		}catch (Exception e){
+			
+		}
+		
 	}
 	
 	private void initServer(int port) throws LifecycleException{

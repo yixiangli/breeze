@@ -1,22 +1,22 @@
 package com.le.ag.breeze.connector.support;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.stream.ChunkedWriteHandler;
-import io.netty.handler.timeout.IdleStateHandler;
-import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
 
-import java.util.Map.Entry;
+import java.net.InetSocketAddress;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.le.ag.breeze.connector.AsynConnector;
 import com.le.ag.breeze.connector.handler.DispatcherHandler;
@@ -30,15 +30,22 @@ import com.le.ag.breeze.exception.LifecycleException;
  */
 public class NettyConnectorSupport extends AsynConnector{
 
+    private static final Logger logger = LoggerFactory.getLogger(NettyConnectorSupport.class);
+	
+    private int port = -1;
 	//	启动器
 	private ServerBootstrap bootstrap;
+	// 线程组
+	private EventLoopGroup bossGroup;
+	private EventLoopGroup workGroup;
     // 创建一个16个线程的线程组来处理耗时的业务逻辑                      
-    private EventExecutorGroup  eventExecutor= new DefaultEventExecutorGroup(16);
+    private EventExecutorGroup  eventExecutor;
 		
 	//初始化
 	@Override
 	public void init() throws LifecycleException{
 		// TODO Auto-generated method stub	
+		fireLifecycleEvent(BEFORE_INIT_EVENT, null);
 		initInternal();
 	}
 	
@@ -46,17 +53,22 @@ public class NettyConnectorSupport extends AsynConnector{
 	@Override
 	public void start() throws LifecycleException{
 		// TODO Auto-generated method stub
-		//super.start();
+		logger.info("server start in {}", getPort());
+        try {
+            ChannelFuture cf = bootstrap.bind(new InetSocketAddress(getPort())).sync();
+            cf.channel().closeFuture().sync();
+        } catch (Exception ex){
+        	logger.error("server start failure!",ex);
+        	ex.printStackTrace();
+        } finally {
+            bossGroup.shutdownGracefully();
+            workGroup.shutdownGracefully();
+        }
 	}
 
 	@Override
 	protected void initInternal() throws LifecycleException {
 		// TODO Auto-generated method stub
-		//处理客户端接收 绑定等工作的线程
-        final EventLoopGroup bossGroup = new NioEventLoopGroup();
-        //处理handler业务
-        final EventLoopGroup workGroup = new NioEventLoopGroup();
-        
         bootstrap = new ServerBootstrap();
         //初始化
         bootstrap.group(bossGroup, workGroup)
@@ -116,6 +128,29 @@ public class NettyConnectorSupport extends AsynConnector{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public void setBossGroup(EventLoopGroup bossGroup) {
+		this.bossGroup = bossGroup;
+	}
+
+	public void setWorkGroup(EventLoopGroup workGroup) {
+		this.workGroup = workGroup;
+	}
+
+	public void setEventExecutor(EventExecutorGroup eventExecutor) {
+		this.eventExecutor = eventExecutor;
+	}
+
+	public void setPort(int port) {
+		// TODO Auto-generated method stub
+		this.port = port;
+	}
+
+	public int getPort() {
+		// TODO Auto-generated method stub
+		return port;
+	}
 	
 	//停止
 	
@@ -123,4 +158,6 @@ public class NettyConnectorSupport extends AsynConnector{
 	
 	
 	//销毁
+	
+	
 }

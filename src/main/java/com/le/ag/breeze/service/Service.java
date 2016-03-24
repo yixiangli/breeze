@@ -3,6 +3,7 @@ package com.le.ag.breeze.service;
 import com.le.ag.breeze.Lifecycle;
 import com.le.ag.breeze.component.Component;
 import com.le.ag.breeze.connector.Connector;
+import com.le.ag.breeze.listener.LifecycleListener;
 import com.le.ag.breeze.server.Server;
 
 /**
@@ -21,7 +22,7 @@ public interface Service extends Lifecycle{
 	public void addComponent(Component component);
 	
 	//添加引擎
-	public void addConnector(Connector connector);
+	public void addConnector(Connector connector,LifecycleListener listener);
 	
 	//获取容器
 	public Component[] findComponents();

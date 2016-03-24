@@ -10,4 +10,7 @@ import com.le.ag.breeze.Lifecycle;
  */
 public interface Connector extends Lifecycle{
 
+	public void setPort(int port);
+	
+	public int getPort();
 }

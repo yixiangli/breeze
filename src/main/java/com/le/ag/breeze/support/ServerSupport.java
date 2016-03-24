@@ -1,10 +1,7 @@
 package com.le.ag.breeze.support;
 
-import com.le.ag.breeze.Lifecycle;
 import com.le.ag.breeze.LifecycleMBeanBase;
 import com.le.ag.breeze.exception.LifecycleException;
-import com.le.ag.breeze.listener.ServiceListener;
-import com.le.ag.breeze.listener.UrlRewriteListener;
 import com.le.ag.breeze.server.Server;
 import com.le.ag.breeze.service.Service;
 
@@ -35,7 +32,7 @@ public class ServerSupport extends LifecycleMBeanBase implements Server {
 	@Override
 	public void start() throws LifecycleException{
 		// TODO Auto-generated method stub
-
+		service.start();
 	}
 	
 	@Override

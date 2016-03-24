@@ -4,6 +4,7 @@ import com.le.ag.breeze.LifecycleMBeanBase;
 import com.le.ag.breeze.component.Component;
 import com.le.ag.breeze.connector.Connector;
 import com.le.ag.breeze.exception.LifecycleException;
+import com.le.ag.breeze.listener.LifecycleListener;
 import com.le.ag.breeze.server.Server;
 import com.le.ag.breeze.service.Service;
 
@@ -25,14 +26,14 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 		System.arraycopy(components, 0, results, 0, components.length);
         results[components.length] = component;
         components = results;
-        //依赖关系
-        //component.setService(this);
 	}
 
 	@Override
-	public void addConnector(Connector connector) {
+	public void addConnector(Connector connector,LifecycleListener listener) {
 		// TODO Auto-generated method stub
 		this.connector = connector;
+		connector.addLifecycleListener(listener);
+		connector.setPort(server.getPort());	
 	}
 
 	@Override
@@ -55,6 +56,13 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 		//初始化阶段事件 
 		initInternal();
 	}
+	
+	@Override
+	public void start() throws LifecycleException {
+		// TODO Auto-generated method stub
+		//启动
+		startInternal();
+	}
 
 	@Override
 	public void setServer(Server server) {
@@ -74,8 +82,7 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 		//组件初始化
 		for(Component component : components){
 			component.init();
-		}
-		
+		}		
 		//引擎初始化
 		connector.init();
 	}
@@ -83,7 +90,7 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 	@Override
 	protected void startInternal() throws LifecycleException {
 		// TODO Auto-generated method stub
-		
+		connector.start();
 	}
 
 	@Override

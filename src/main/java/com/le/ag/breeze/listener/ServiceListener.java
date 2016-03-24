@@ -30,7 +30,8 @@ public class ServiceListener implements LifecycleListener {
 			//加载组件
 			service.addComponent(new UrlRewriteComponent());
 			//加载引擎
-			service.addConnector(new NettyConnectorSupport());
+			service.addConnector(new NettyConnectorSupport(),new NettyConnectorListener());
+			
 		}
 	}
 
