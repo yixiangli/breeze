@@ -18,5 +18,13 @@ public final class Constants {
 	
 	public static final String INCLUDE_SOURCE = "resource";
 	
-	public static final String DEFAULT_URL_REWRITE_FILE = "urlrewrite.xml";
+	public static final String DEFAULT_CONFIG_FILE = "config.xml";
+
+	public static final String PROPERTIES = "properties";
+	
+	public static final String PREFIX_FILE = "file:";
+	public static final String PREFIX_CLASSPATH = "classpath:";
+
+	//serviceLocator
+	public static final String SERVICE_LOCATOR_SUPPORT = "ServiceLocatorSupoort";
 }

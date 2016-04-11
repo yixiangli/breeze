@@ -1,6 +1,8 @@
 package com.le.ag.breeze.support;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +31,7 @@ public class WebClassLoader extends ClassLoader{
 	/**
 	 * 根据className加载class
 	 */
-	public static Class<?> loadClassByName(String className){
+	protected static Class<?> loadClassByName(String className){
 		try {
             return getClassLoader().loadClass(className);
         } catch (ClassNotFoundException ex) {
@@ -38,6 +40,23 @@ public class WebClassLoader extends ClassLoader{
             throw new ServerException("类加载异常",cause);
         }	
 	}
+	
+	
+	/**
+     * 创建指定类的实例
+     *
+     * @param clazzName 类名
+     * @return
+     */
+    public static Object getInstance(String clazzName) {
+        try {
+            return loadClassByName(clazzName).newInstance();
+        } catch (Exception ex) {
+        	logger.error("类实例化异常",ex);
+        	Throwable cause = ex.getCause();
+            throw new ServerException("类实例化异常",cause);
+        } 
+    }
 	
 	
 	/**
@@ -60,5 +79,25 @@ public class WebClassLoader extends ClassLoader{
 	public static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();
     }
+	
+	/**
+	 * 
+	 * @use
+	 * @param
+	 * @return
+	 */
+	public static Properties getProperties(String resource) {	
+		 Properties properties = new Properties();
+	        try {
+	            InputStream is = getStream(resource);
+	            if (is == null) {
+	            	return properties;
+	            }  
+	            properties.load(is);
+	            return properties;
+	        } catch (IOException ex) {
+	            return properties;
+	        }
+	}
 	
 }

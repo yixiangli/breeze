@@ -31,5 +31,12 @@
 	  <artifactId>netty-all</artifactId>
 	  <version>4.0.28.Final</version>
 	</dependency>
+	<!--  
+	<dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    -->
   </dependencies>
 </project>

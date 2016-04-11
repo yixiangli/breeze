@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.le.ag.breeze.Lifecycle;
+import com.le.ag.breeze.component.support.ConfigurationComponent;
+import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
@@ -29,6 +31,8 @@ public class ServiceListener implements LifecycleListener {
 		if(event.getType().equals(Lifecycle.BEFORE_INIT_EVENT)){
 			//加载组件
 			service.addComponent(new UrlRewriteComponent());
+			service.addComponent(new ConfigurationComponent());
+			service.addComponent(new ServiceLocatorComponent());
 			//加载引擎
 			service.addConnector(new NettyConnectorSupport(),new NettyConnectorListener());
 			

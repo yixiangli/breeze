@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.le.ag.breeze.connector.AsynConnector;
-import com.le.ag.breeze.connector.handler.DispatcherHandler;
+import com.le.ag.breeze.connector.handler.HttpHandler;
 import com.le.ag.breeze.exception.LifecycleException;
 
 /**
@@ -91,7 +91,7 @@ public class NettyConnectorSupport extends AsynConnector{
 	                        //主要用于处理大数据流
 	                        ch.pipeline().addLast("http-chunkedWriter", new ChunkedWriteHandler());         
 	                        //加强业务逻辑处理效率
-	                        ch.pipeline().addLast(eventExecutor,new DispatcherHandler());  
+	                        ch.pipeline().addLast(eventExecutor,"http-processor",new HttpHandler());  
 	                        
 	                        /**
 	                        // 这里只允许增加无状态允许共享的ChannelHandler，对于有状态的channelHandler需要重写

@@ -1,6 +1,7 @@
 package com.le.ag.breeze;
 
 import java.io.InputStream;
+import java.util.Properties;
 
 import com.le.ag.breeze.support.WebClassLoader;
 
@@ -28,6 +29,24 @@ public class WebLoader implements Loader {
 		return WebClassLoader.getStream(resource);
 	}
 	
+	/**
+	 * 
+	 * @use 根据resources返回Properties
+	 * @param
+	 * @return
+	 */
+	public static Properties getProperties(String resource) {	
+		return WebClassLoader.getProperties(resource);
+	}
 	
 	
+	/**
+     * 创建指定类的实例
+     *
+     * @param clazzName 类名
+     * @return
+     */
+    public static Object getInstance(String clazzName) {
+    	return WebClassLoader.getInstance(clazzName);
+    }
 }
