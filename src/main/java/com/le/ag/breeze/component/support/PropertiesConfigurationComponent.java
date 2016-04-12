@@ -20,7 +20,7 @@ public class PropertiesConfigurationComponent implements Configuration {
     private static final Logger logger = LoggerFactory.getLogger(PropertiesConfigurationComponent.class);
 	
     protected Properties properties;
-    private Configuration[] configurations;
+    private static Configuration[] configurations;
 	
     public PropertiesConfigurationComponent() {
 		// TODO Auto-generated constructor stub
@@ -47,18 +47,7 @@ public class PropertiesConfigurationComponent implements Configuration {
             }
         }
     }
-		
-	@Override
-    public boolean containsKey(String key) {
-        for (Configuration cfg : configurations) {
-            if (cfg.containsKey(key)) {
-                return true;
-            }
-        }
-        return false;
-    }
-	
-	
+
 	@Override
 	public String getString(String key) {
 		// TODO Auto-generated method stub
@@ -67,7 +56,18 @@ public class PropertiesConfigurationComponent implements Configuration {
                 return configuration.getString(key);
             }
         }
-		return "";
+        return StringUtils.EMPTY;
+	}
+
+	@Override
+	public boolean containsKey(String key) {
+		// TODO Auto-generated method stub
+		for (Configuration cfg : configurations) {
+            if (cfg.containsKey(key)) {
+                return true;
+            }
+        }
+        return false;
 	}
 
 }

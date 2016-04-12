@@ -36,8 +36,8 @@ public abstract class LifecycleBase implements Lifecycle {
 	protected abstract void stopInternal() throws LifecycleException;
 
 	@Override
-	public void destory() throws LifecycleException{
-		
+	public void destory() {
+		System.exit(-1);
 	}
 	
 	protected abstract void destoryInternal() throws LifecycleException;

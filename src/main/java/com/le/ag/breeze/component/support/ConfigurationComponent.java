@@ -50,13 +50,6 @@ public class ConfigurationComponent extends StandardComponent {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	protected void destoryInternal() throws LifecycleException {
-		// TODO Auto-generated method stub
-
-	}
-
 	
 	/**
 	 * 

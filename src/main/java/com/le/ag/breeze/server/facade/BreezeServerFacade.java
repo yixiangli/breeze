@@ -24,8 +24,9 @@ public class BreezeServerFacade{
 		//初始化服务
 		try {
 			initServer(port);
-		}catch (Exception e){
-			 
+		}catch (Exception e){			
+			e.printStackTrace();
+			server.destory();
 		}
 		//启动服务
 		try{

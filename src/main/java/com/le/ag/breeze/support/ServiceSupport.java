@@ -102,6 +102,14 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 	@Override
 	protected void destoryInternal() throws LifecycleException {
 		// TODO Auto-generated method stub
-		
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //bootstrap.releaseExternalResources();             
+                for (Component component : components) {
+                    component.destory();
+                }
+            }
+        })); 
 	}
 }

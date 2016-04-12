@@ -1,6 +1,9 @@
 package com.le.ag.breeze.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -40,7 +43,6 @@ public final class XMLUtil {
     //待优化
     private static final XPathFactory xpathFactory = XPathFactory.newInstance();
     private static final XPath xpath = xpathFactory.newXPath();
-    private static InputStream is;
     private static XPathExpression INCLUDE_XPATH_EXPRESSION;
     private static XPathExpression RULE_XPATH_EXPRESSION;
     private static XPathExpression FROM_XPATH_EXPRESSION;
@@ -66,19 +68,16 @@ public final class XMLUtil {
      * @param
      * @return
      */
-    public static void loading(String configFile) throws Exception {
+    public static InputStream loading(String configFile) throws Exception {
     	logger.info("初始化xml文件配置, {}", configFile);
 
-    	//是否已加载文件
-    	if(null != is){
-    		return;
-    	}
         //获取文件流
-        is = WebLoader.getStreamByResourceName(configFile);
+    	InputStream is = WebLoader.getStreamByResourceName(configFile);
         if (is == null) {
             logger.error("config文件不存在");
             throw new ServerException("config文件不存在");
         }
+        return is;
     }
     
     /**
@@ -89,7 +88,7 @@ public final class XMLUtil {
      */
     public static Map<Pattern, String> parse(String configFile) throws Exception {
 		//加载文件
-		loading(configFile);
+		InputStream is = loading(configFile);
         //解析xml
         return analyzXml(is);
     }
@@ -150,7 +149,7 @@ public final class XMLUtil {
 	 */
 	public static Configuration parse(String configFile,String configType) throws Exception{	
 		//加载文件
-		loading(configFile);
+		InputStream is = loading(configFile);
 		//解析xml
 		return getConfiguration(is,configType);
 	}
@@ -175,5 +174,27 @@ public final class XMLUtil {
          //默认
          return new PropertiesConfigurationComponent();
 	}
+	
+	
+	public static String convertStreamToString(InputStream is) {   
+		   BufferedReader reader = new BufferedReader(new InputStreamReader(is));   
+		        StringBuilder sb = new StringBuilder();   
+		        String line = null;   
+		        try {   
+		            while ((line = reader.readLine()) != null) {   
+		                sb.append(line + "/n");   
+		            }   
+		        } catch (IOException e) {   
+		            e.printStackTrace();   
+		        } finally {   
+		            try {   
+		                is.close();   
+		            } catch (IOException e) {   
+		                e.printStackTrace();   
+		            }   
+		        }   
+		        return sb.toString();   
+		    }   
+	
 	
 }

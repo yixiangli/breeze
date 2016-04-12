@@ -31,7 +31,7 @@ public class UrlRewriteComponent extends StandardComponent {
 		// TODO Auto-generated method stub
 		//加载重定向文件
 		try {
-			urlRewriteRules.putAll(XMLUtil.parse(Constants.DEFAULT_CONFIG_FILE));
+			urlRewriteRules.putAll(XMLUtil.parse(Constants.DEFAULT_URL_REWRITE_FILE));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error("url rewriter parse error",e);
@@ -52,12 +52,6 @@ public class UrlRewriteComponent extends StandardComponent {
 
 	@Override
 	protected void stopInternal() throws LifecycleException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void destoryInternal() throws LifecycleException {
 		// TODO Auto-generated method stub
 		
 	}

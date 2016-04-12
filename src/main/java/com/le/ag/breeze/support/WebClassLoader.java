@@ -36,8 +36,7 @@ public class WebClassLoader extends ClassLoader{
             return getClassLoader().loadClass(className);
         } catch (ClassNotFoundException ex) {
         	logger.error("类加载异常",ex);
-        	Throwable cause = ex.getCause();
-            throw new ServerException("类加载异常",cause);
+            throw new ServerException("类加载异常",ex.getCause());
         }	
 	}
 	
@@ -53,8 +52,7 @@ public class WebClassLoader extends ClassLoader{
             return loadClassByName(clazzName).newInstance();
         } catch (Exception ex) {
         	logger.error("类实例化异常",ex);
-        	Throwable cause = ex.getCause();
-            throw new ServerException("类实例化异常",cause);
+            throw new ServerException("类实例化异常",ex.getCause());
         } 
     }
 	
@@ -91,12 +89,14 @@ public class WebClassLoader extends ClassLoader{
 	        try {
 	            InputStream is = getStream(resource);
 	            if (is == null) {
-	            	return properties;
+	            	logger.error("properties file is not found");
+	                throw new ServerException("properties file is not found");
 	            }  
 	            properties.load(is);
 	            return properties;
-	        } catch (IOException ex) {
-	            return properties;
+	        } catch (Exception ex) {
+	        	logger.error("load properties error",ex);
+                throw new ServerException("load properties error",ex.getCause());
 	        }
 	}
 	

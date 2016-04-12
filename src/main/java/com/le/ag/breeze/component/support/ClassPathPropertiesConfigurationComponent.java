@@ -8,4 +8,17 @@ public class ClassPathPropertiesConfigurationComponent extends PropertiesConfigu
         this.properties = WebLoader.getProperties(propertiesFile);
     }
 
+    @Override
+    public boolean containsKey(String key) {
+		return this.properties.containsKey(key);
+    }
+	
+
+	@Override
+	public String getString(String key) {
+		// TODO Auto-generated method stub
+		String value = this.properties.getProperty(key);
+		return value;
+	}
+    
 }

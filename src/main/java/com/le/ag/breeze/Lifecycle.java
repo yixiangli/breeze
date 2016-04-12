@@ -109,7 +109,7 @@ public interface Lifecycle {
 	 * @param
 	 * @return
 	 */
-	void destory() throws LifecycleException;
+	void destory();
 	
 	
 	void addLifecycleListener(LifecycleListener lister);

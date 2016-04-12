@@ -15,10 +15,10 @@ public final class Constants {
 	public static final String RULE = "//rule";
 	public static final String FROM = "//from/text()";
 	public static final String TO = "//to/text()";
-	
 	public static final String INCLUDE_SOURCE = "resource";
 	
 	public static final String DEFAULT_CONFIG_FILE = "config.xml";
+	public static final String DEFAULT_URL_REWRITE_FILE = "urlrewrite.xml";
 
 	public static final String PROPERTIES = "properties";
 	
@@ -26,5 +26,5 @@ public final class Constants {
 	public static final String PREFIX_CLASSPATH = "classpath:";
 
 	//serviceLocator
-	public static final String SERVICE_LOCATOR_SUPPORT = "ServiceLocatorSupoort";
+	public static final String SERVICE_LOCATOR_SUPPORT = "ServiceLocatorSupport";
 }
