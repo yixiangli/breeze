@@ -7,6 +7,7 @@ import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
 import io.netty.util.CharsetUtil;
@@ -18,9 +19,11 @@ import java.util.Map;
 
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
+import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.message.HttpRequestMessageContext;
 import com.le.ag.breeze.message.RequestMessageFacade;
 import com.le.ag.breeze.util.ReflectUtil;
+import com.le.ag.breeze.util.StringUtils;
 
 
 /**
@@ -32,17 +35,31 @@ import com.le.ag.breeze.util.ReflectUtil;
 public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
 	@Override
-	protected HttpRequestMessageContext encapsulate(FullHttpRequest request) throws Exception {
+	protected RequestMessageFacade encapsulate(FullHttpRequest request) throws Exception {
 		// TODO Auto-generated method stub
 		return new RequestMessageFacade(request);	
 	}
 
 	@Override
-	protected String interceptRequest(HttpRequestMessageContext request) throws Exception {
+	protected String interceptRequest(RequestMessageFacade request) throws Exception {
 		// TODO Auto-generated method stub
+		//请求url拦截 
 		String uri = request.getRequestURI();
 		//urlrewriter匹配
-		return UrlRewriteComponent.urlMapping(uri);
+		String reUri =  UrlRewriteComponent.urlMapping(uri);
+		if(StringUtils.isEmpty(reUri)){
+			throw new ServerException("url is not found!");
+		}
+		//重定向url注入
+		request.setRewriteUrl(reUri);
+		//请求method分发 目前只是支持get post请求
+		String method = request.getMethod();
+		if(method == HttpMethod.POST.name() || method == HttpMethod.GET.name()){		
+			Dispatcher.doService(request);
+		}else {
+			throw new ServerException("http method is not support!");
+		}	
+		return reUri;
 	}
 
 	@Override
@@ -52,7 +69,7 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 	}
 
 	@Override
-	protected Object execute(Object invokeService,String methodName,HttpRequestMessageContext requestMsgCtx) throws Exception {
+	protected Object execute(Object invokeService,String methodName,RequestMessageFacade requestMsgCtx) throws Exception {
 		// TODO Auto-generated method stub
 		// 根据service method invoke服务 参数为MessageContext
 		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), methodName,new Class[] { HttpRequestMessageContext.class });

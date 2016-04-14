@@ -4,7 +4,9 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 
+import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.message.HttpRequestMessageContext;
+import com.le.ag.breeze.message.RequestMessageFacade;
 
 /**
  * 
@@ -23,15 +25,15 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	public void process(ChannelHandlerContext ctx,FullHttpRequest request) throws Exception{
 		
 		//请求封装
-		HttpRequestMessageContext requestMsgCtx = encapsulate(request);
+		RequestMessageFacade requestMsg = encapsulate(request);
 		//请求拦截
-		String serviceMethod = interceptRequest(requestMsgCtx);
+		interceptRequest(requestMsg);
 		//服务定位
-		Object invokeService = serviceLocate(requestMsgCtx.getParameter(""));
+		Object invokeService = serviceLocate(requestMsg.getParameter(Constants.SERVICE_PARAM));
 		//调用
-		Object result = execute(requestMsgCtx.getParameter(""),requestMsgCtx.getParameter(""),requestMsgCtx);
+		Object result = execute(invokeService,requestMsg.getParameter(Constants.METHOD_PARAM),requestMsg);
 		//结果处理
-		
+		sendResponse(ctx,result);
 	}
 	
 	/**
@@ -40,7 +42,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @param
 	 * @return
 	 */
-	protected abstract HttpRequestMessageContext encapsulate(FullHttpRequest request) throws Exception;
+	protected abstract RequestMessageFacade encapsulate(FullHttpRequest request) throws Exception;
 	
 	/**
 	 * 
@@ -48,7 +50,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @param
 	 * @return
 	 */
-	protected abstract String interceptRequest(HttpRequestMessageContext request) throws Exception;
+	protected abstract String interceptRequest(RequestMessageFacade request) throws Exception;
 	
 
 	/**
@@ -65,7 +67,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @param
 	 * @return
 	 */
-	protected abstract Object execute(Object invokeService,String methodNamel,HttpRequestMessageContext requestMsgCtx) throws Exception;
+	protected abstract Object execute(Object invokeService,String methodNamel,RequestMessageFacade requestMsgCtx) throws Exception;
 	
 	/**
 	 * 

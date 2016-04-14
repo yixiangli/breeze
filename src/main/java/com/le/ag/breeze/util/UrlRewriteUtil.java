@@ -55,7 +55,7 @@ public class UrlRewriteUtil {
             }
         }
         //url为空或者未匹配上
-        throw new BreezeException("url server is not found");
+        return StringUtils.EMPTY;
     }
 
 	/**

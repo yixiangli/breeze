@@ -27,4 +27,11 @@ public final class Constants {
 
 	//serviceLocator
 	public static final String SERVICE_LOCATOR_SUPPORT = "ServiceLocatorSupport";
+	
+	public static final String SERVICE_PARAM = "service";
+	public static final String METHOD_PARAM = "method";
+	
+	//Symbol
+	public static final String QUESTION_MARK = "?";
+	public static final String AND = "&";
 }

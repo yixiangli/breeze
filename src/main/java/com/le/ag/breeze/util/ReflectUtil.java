@@ -39,7 +39,7 @@ public class ReflectUtil {
         }
         //缓存不为空
         try {
-            method = clazz.getMethod(methodName, paramTypes);
+            method = clazz.getDeclaredMethod(methodName, paramTypes);
             if (!method.isAccessible()) {
                 method.setAccessible(true);
             }
@@ -47,7 +47,8 @@ public class ReflectUtil {
             cacheMethod(md, method);
             return method;
         } catch (Exception ex) {
-            logger.error("reflect getMethod exception", ex);
+        	ex.printStackTrace();
+            logger.error("reflect getMethod exception", ex.getCause());
             throw new ServerException("reflect getMethod exception",ex.getCause());
         }
     }

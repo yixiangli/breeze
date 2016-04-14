@@ -3791,6 +3791,23 @@ public class StringUtils {
 	        return defaultValue;
 	    }
 	    
+	    
+	    /**
+	     * 字符串连接
+	     * @author liyixiang
+	     * @param args
+	     * @return
+	     */
+	    public static String concat(Object... args) {
+	        if (args == null || args.length == 0) {
+	            return EMPTY;
+	        }
+	        StringBuilder stringBuilder = new StringBuilder();
+	        for (Object arg : args) {
+	            stringBuilder.append(arg);
+	        }
+	        return stringBuilder.toString();
+	    }
 
 }
 

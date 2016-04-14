@@ -31,27 +31,27 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	@Override
 	public String getHeader(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getHeader(name);
 	}
 
 	@Override
 	public List<String> getHeaders(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getHeaders(name);
 	}
 
 	@Override
 	public Set<String> getHeaderNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getHeaderNames();
 	}
 
 	@Override
 	public List<Entry<String, String>> getHeaders() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getHeaders();
 	}
-
+	
 	@Override
 	public String getRequestURI() {
 		// TODO Auto-generated method stub
@@ -61,7 +61,7 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	@Override
 	public String getMethod() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getMethod();
 	}
 
 	@Override
@@ -79,13 +79,13 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	@Override
 	public String[] getParameterValues(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getParameterValues(name);
 	}
 
 	@Override
 	public String getProtocol() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getProtocol();
 	}
 
 	@Override
@@ -117,4 +117,27 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public String getRewriteUrl() {
+		// TODO Auto-generated method stub
+		return requestMessage.getRewriteUrl();
+	}
+	
+	@Override
+	public void setRewriteUrl(String rewriteUrl){
+		requestMessage.setRewriteUrl(rewriteUrl);
+	}
+
+	/**
+	 * 
+	 * @use
+	 * @param
+	 * @return
+	 */
+	public void parseParam(){
+		requestMessage.extractRequest();
+	}
+	
+	
 }

@@ -23,6 +23,10 @@ public interface HttpRequestMessageContext {
     
     public List<Map.Entry<String, String>> getHeaders();
 
+    public void setRewriteUrl(String rewriteUrl);
+    
+    public String getRewriteUrl();
+    
     public String getRequestURI();
 
     public String getMethod();
