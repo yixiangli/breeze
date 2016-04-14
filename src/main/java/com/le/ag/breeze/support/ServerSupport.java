@@ -2,6 +2,7 @@ package com.le.ag.breeze.support;
 
 import com.le.ag.breeze.LifecycleMBeanBase;
 import com.le.ag.breeze.exception.LifecycleException;
+import com.le.ag.breeze.listener.ServiceListener;
 import com.le.ag.breeze.server.Server;
 import com.le.ag.breeze.service.Service;
 
@@ -25,6 +26,12 @@ public class ServerSupport extends LifecycleMBeanBase implements Server {
 	@Override
 	public void init() throws LifecycleException{
 		// TODO Auto-generated method stub
+		//实例化service
+		service = new ServiceSupport();
+		//注册事件
+		service.addLifecycleListener(new ServiceListener());
+		//service纳入server管理
+		this.addService(service);
 		//初始化service
 		service.init();
 	}
@@ -92,10 +99,15 @@ public class ServerSupport extends LifecycleMBeanBase implements Server {
 	}
 
 	@Override
-	protected void destoryInternal() throws LifecycleException {
+	protected void destoryInternal() {
 		// TODO Auto-generated method stub
-		
+		service.destory();
 	}
 	
+	@Override
+	public void destory()  {
+		// TODO Auto-generated method stub
+		destoryInternal();
+	}
 	
 }

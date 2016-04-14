@@ -2,7 +2,10 @@ package com.le.ag.breeze.message;
 
 import io.netty.handler.codec.http.Cookie;
 import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.QueryStringDecoder;
+import io.netty.util.CharsetUtil;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -162,12 +165,25 @@ public class RequestMessage {
 	 * @param
 	 * @return
 	 */
-	public void extractRequest(){
+	public void extractRequest(String method){
 		
-		QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));
 		Map<String, List<String>> parameterList = new HashMap<String, List<String>>();
-		parameterList.putAll(parameterDecoder.parameters());
 		
+		if(HttpMethod.POST.name().equals(method)){
+			 String contentType = HttpHeaders.getHeader(request, HttpHeaders.Names.CONTENT_TYPE);
+	         if (HttpHeaders.Values.APPLICATION_X_WWW_FORM_URLENCODED.equalsIgnoreCase(contentType) && (HttpHeaders.getContentLength(request) > 0 || request.content().readableBytes() > 0)) {
+	                // FIXME 修复解析post参数的bug,必须将第二个参数hashPath设置为false才可以
+	            	QueryStringDecoder postParameterDecoder = new QueryStringDecoder(request.content().toString(CharsetUtil.UTF_8), false);
+	            	parameterList.putAll(postParameterDecoder.parameters());
+	         }else {
+	        	 System.out.println("error");
+	         }
+		}else if(HttpMethod.GET.name().equals(method)){
+			QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));	
+			parameterList.putAll(parameterDecoder.parameters());		
+		}
+		
+
 		for (Entry<String, List<String>> entry : parameterList.entrySet()) {
 			parameterMap.put(entry.getKey(), entry.getValue().toArray(new String[]{}));
         }

@@ -9,6 +9,7 @@ import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
+import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.service.Service;
 import com.le.ag.breeze.support.ServiceSupport;
 
@@ -24,7 +25,8 @@ public class ServiceListener implements LifecycleListener {
 		try{
 			service = (ServiceSupport)event.getLifecycle();
 		}catch (ClassCastException e){
-			logger.error("",e);
+			logger.error("class cast exception",e);
+			throw new ServerException("class cast exception");
 		}
 		
 		//初始化之前

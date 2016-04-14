@@ -12,18 +12,6 @@ import com.le.ag.breeze.exception.LifecycleException;
 public abstract class StandardComponent extends LifecycleBase implements Component {
 
 	@Override
-	public void destory() {
-		// TODO Auto-generated method stub
-		destoryInternal();
-	}
-	
-	@Override
-	protected void destoryInternal() {
-		// TODO Auto-generated method stub
-		System.out.println("destory component");
-	}
-	
-	@Override
 	protected void initInternal() throws LifecycleException {
 		// TODO Auto-generated method stub
 		

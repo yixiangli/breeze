@@ -11,6 +11,7 @@ import com.le.ag.breeze.connector.Connector;
 import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
 import com.le.ag.breeze.exception.LifecycleException;
+import com.le.ag.breeze.exception.ServerException;
 
 public class NettyConnectorListener implements LifecycleListener {
 
@@ -24,7 +25,8 @@ public class NettyConnectorListener implements LifecycleListener {
 		try{
 			connector = (NettyConnectorSupport)event.getLifecycle();
 		}catch (ClassCastException e){
-			logger.error("",e);
+			logger.error("class cast exception",e);
+			throw new ServerException("class cast exception");
 		}
 		
 		//初始化之前

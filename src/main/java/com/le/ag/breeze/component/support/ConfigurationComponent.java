@@ -71,5 +71,11 @@ public class ConfigurationComponent extends StandardComponent {
 		return cfg.containsKey(key);
 	}
 
+	@Override
+	protected void destoryInternal() throws LifecycleException {
+		// TODO Auto-generated method stub
+		cfg = null;
+	}
+
 
 }

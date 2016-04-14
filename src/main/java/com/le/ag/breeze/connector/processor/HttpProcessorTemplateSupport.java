@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.exception.ServerException;
@@ -48,31 +49,32 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		//urlrewriter匹配
 		String reUri =  UrlRewriteComponent.urlMapping(uri);
 		if(StringUtils.isEmpty(reUri)){
-			throw new ServerException("url is not found!");
+			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
 		}
 		//重定向url注入
 		request.setRewriteUrl(reUri);
 		//请求method分发 目前只是支持get post请求
 		String method = request.getMethod();
-		if(method == HttpMethod.POST.name() || method == HttpMethod.GET.name()){		
-			Dispatcher.doService(request);
-		}else {
-			throw new ServerException("http method is not support!");
-		}	
+		if(method != HttpMethod.POST.name() || method != HttpMethod.GET.name()){	
+			throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
+		}
 		return reUri;
 	}
 
 	@Override
-	protected Object serviceLocate(String serviceName) throws Exception {
+	protected Object serviceLocate(RequestMessageFacade request) throws Exception {
 		// TODO Auto-generated method stub
-		return ServiceLocatorComponent.getServiceLocator().getService(serviceName);
+		//服务注入
+		Dispatcher.doService(request);
+		//服务获取
+		return ServiceLocatorComponent.getServiceLocator().getService(request.getParameter(Constants.SERVICE_PARAM));
 	}
 
 	@Override
-	protected Object execute(Object invokeService,String methodName,RequestMessageFacade requestMsgCtx) throws Exception {
+	protected Object execute(Object invokeService,RequestMessageFacade requestMsgCtx) throws Exception {
 		// TODO Auto-generated method stub
 		// 根据service method invoke服务 参数为MessageContext
-		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), methodName,new Class[] { HttpRequestMessageContext.class });
+		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), requestMsgCtx.getParameter(Constants.METHOD_PARAM),new Class[] { HttpRequestMessageContext.class });
 		Object invokeResult = _invokeMethod.invoke(invokeService, new Object[] { requestMsgCtx });
 		return invokeResult;
 	}

@@ -57,6 +57,12 @@ public class ServiceLocatorComponent extends StandardComponent {
 	public static ServiceLocator getServiceLocator(){
 		return serviceLocator;
 	}
+
+	@Override
+	protected void destoryInternal() throws LifecycleException {
+		// TODO Auto-generated method stub
+		serviceLocator = null;
+	}
 	
 	
 }

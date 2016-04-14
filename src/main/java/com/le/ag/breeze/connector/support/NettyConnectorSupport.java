@@ -158,6 +158,18 @@ public class NettyConnectorSupport extends AsynConnector{
 	
 	
 	//销毁
-	
+	@Override
+	public void destory() {
+		// TODO Auto-generated method stub 
+        if(!eventExecutor.isShutdown()){
+        	eventExecutor.shutdownGracefully();
+        }
+        if(!bossGroup.isShutdown()){
+        	bossGroup.shutdownGracefully();
+        }
+        if(!workGroup.isShutdown()){
+            workGroup.shutdownGracefully();
+        }
+	}
 	
 }

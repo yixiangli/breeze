@@ -66,4 +66,10 @@ public class UrlRewriteComponent extends StandardComponent {
 		return UrlRewriteUtil.urlMatcher(urlRewriteRules, url);
 	}
 
+	@Override
+	protected void destoryInternal() throws LifecycleException {
+		// TODO Auto-generated method stub
+		urlRewriteRules.clear();
+	}
+
 }

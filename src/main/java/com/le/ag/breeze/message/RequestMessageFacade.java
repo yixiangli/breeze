@@ -136,7 +136,7 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	 * @return
 	 */
 	public void parseParam(){
-		requestMessage.extractRequest();
+		requestMessage.extractRequest(this.getMethod());
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.le.ag.breeze.exception;
 
+import io.netty.handler.codec.http.HttpResponseStatus;
+
 /**
  * 
  * @author liyixiang <liyixiang@letv.com>
