@@ -12,7 +12,14 @@ import com.le.ag.breeze.message.RequestMessageFacade;
  */
 public class Dispatcher {
 
+	/**
+	 * 
+	 * @use 服务分发
+	 * @param
+	 * @return
+	 */
 	public static void doService(RequestMessageFacade requestMsg){
+		//参数解析
 		requestMsg.parseParam();
 	}
 	

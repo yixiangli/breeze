@@ -4,6 +4,7 @@ import io.netty.handler.codec.http.Cookie;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpMethod;
+import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import io.netty.util.CharsetUtil;
 
@@ -15,6 +16,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.le.ag.breeze.Constants;
+import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.util.StringUtils;
 
 /**
@@ -143,6 +145,7 @@ public class RequestMessage {
 	 * @return
 	 */
 	private String spliceParam(String rewriteUrl){
+		//参数截取 形如a=5&b=7
 		String requestParam = interceptParam(getRequestURI());
 		String param = StringUtils.concat(rewriteUrl,Constants.AND,requestParam);
 		return param;
@@ -155,6 +158,7 @@ public class RequestMessage {
 	 * @return
 	 */
 	private String interceptParam(String uri){
+		//截取?之后的url
 		return StringUtils.trim(StringUtils.substringAfter(uri, Constants.QUESTION_MARK));
 	}
 	
@@ -169,6 +173,7 @@ public class RequestMessage {
 		
 		Map<String, List<String>> parameterList = new HashMap<String, List<String>>();
 		
+		//post请求特殊处理
 		if(HttpMethod.POST.name().equals(method)){
 			 String contentType = HttpHeaders.getHeader(request, HttpHeaders.Names.CONTENT_TYPE);
 	         if (HttpHeaders.Values.APPLICATION_X_WWW_FORM_URLENCODED.equalsIgnoreCase(contentType) && (HttpHeaders.getContentLength(request) > 0 || request.content().readableBytes() > 0)) {
@@ -176,13 +181,12 @@ public class RequestMessage {
 	            	QueryStringDecoder postParameterDecoder = new QueryStringDecoder(request.content().toString(CharsetUtil.UTF_8), false);
 	            	parameterList.putAll(postParameterDecoder.parameters());
 	         }else {
-	        	 System.out.println("error");
+	        	 throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
 	         }
 		}else if(HttpMethod.GET.name().equals(method)){
-			QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));	
-			parameterList.putAll(parameterDecoder.parameters());		
+			 QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));	
+ 			 parameterList.putAll(parameterDecoder.parameters());
 		}
-		
 
 		for (Entry<String, List<String>> entry : parameterList.entrySet()) {
 			parameterMap.put(entry.getKey(), entry.getValue().toArray(new String[]{}));

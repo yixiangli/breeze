@@ -53,9 +53,9 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		}
 		//重定向url注入
 		request.setRewriteUrl(reUri);
-		//请求method分发 目前只是支持get post请求
+		//请求method过滤 目前只是支持get post请求
 		String method = request.getMethod();
-		if(method != HttpMethod.POST.name() || method != HttpMethod.GET.name()){	
+		if(method != HttpMethod.POST.name() && method != HttpMethod.GET.name()){	
 			throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
 		}
 		return reUri;
