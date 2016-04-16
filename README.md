@@ -4,6 +4,9 @@ master
                                                        bug-2:应用模块需要配置netty依赖  时间2016-4-16
 													   bug-3:post请求异常                 时间2016-4-17
 
+
+2016-4-17             v1.0.1 Pre-alpha           解决bug-3
+ 													   优化handle线程数16－128
 													   
 													   
 													   
