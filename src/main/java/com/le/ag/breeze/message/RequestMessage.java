@@ -147,6 +147,10 @@ public class RequestMessage {
 	private String spliceParam(String rewriteUrl){
 		//参数截取 形如a=5&b=7
 		String requestParam = interceptParam(getRequestURI());
+		//修复post请求参数问题
+		if(StringUtils.isBlank(requestParam)){
+			return rewriteUrl;
+		}
 		String param = StringUtils.concat(rewriteUrl,Constants.AND,requestParam);
 		return param;
 	}
@@ -173,6 +177,9 @@ public class RequestMessage {
 		
 		Map<String, List<String>> parameterList = new HashMap<String, List<String>>();
 		
+		//存放service/method param
+		QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));	
+		parameterList.putAll(parameterDecoder.parameters());
 		//post请求特殊处理
 		if(HttpMethod.POST.name().equals(method)){
 			 String contentType = HttpHeaders.getHeader(request, HttpHeaders.Names.CONTENT_TYPE);
@@ -180,12 +187,7 @@ public class RequestMessage {
 	                // FIXME 修复解析post参数的bug,必须将第二个参数hashPath设置为false才可以
 	            	QueryStringDecoder postParameterDecoder = new QueryStringDecoder(request.content().toString(CharsetUtil.UTF_8), false);
 	            	parameterList.putAll(postParameterDecoder.parameters());
-	         }else {
-	        	 throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
 	         }
-		}else if(HttpMethod.GET.name().equals(method)){
-			 QueryStringDecoder parameterDecoder = new QueryStringDecoder(spliceParam(this.rewriteUrl));	
- 			 parameterList.putAll(parameterDecoder.parameters());
 		}
 
 		for (Entry<String, List<String>> entry : parameterList.entrySet()) {

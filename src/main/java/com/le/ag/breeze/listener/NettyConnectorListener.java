@@ -33,7 +33,7 @@ public class NettyConnectorListener implements LifecycleListener {
 		if(event.getType().equals(Lifecycle.BEFORE_INIT_EVENT)){
 			//线程设置
 			if(connector instanceof NettyConnectorSupport){
-				((NettyConnectorSupport) connector).setEventExecutor(new DefaultEventExecutorGroup(16));
+				((NettyConnectorSupport) connector).setEventExecutor(new DefaultEventExecutorGroup(128));
 				//处理客户端接收 绑定等工作的线程
 				((NettyConnectorSupport) connector).setBossGroup(new NioEventLoopGroup());
 		        //处理handler业务
