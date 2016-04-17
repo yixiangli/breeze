@@ -14,6 +14,7 @@ master
 													   
 2016-4-17             v1.0.2.2 Pre-alpha         优化:logback使业务线程block
 													   
+2016-4-17             v1.0.3 Pre-alpha           优化:log日志清理
 													   
 													   
 													   
