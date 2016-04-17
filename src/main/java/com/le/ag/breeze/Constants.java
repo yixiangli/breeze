@@ -34,4 +34,9 @@ public final class Constants {
 	//Symbol
 	public static final String QUESTION_MARK = "?";
 	public static final String AND = "&";
-}
+	
+	//Executor
+	public static final String BOSS_GROUP_NUM = "BossGroupNumber";
+	public static final String WORK_GROUP_NUM = "WorkGroupNumber";
+	public static final String EVENT_EXECUTOR_GROUP_NUM = "EventExecutorGroupNumber";
+} 

@@ -17,7 +17,7 @@ import com.le.ag.breeze.message.RequestMessageFacade;
  */
 public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 
-	protected static final Logger logger = LoggerFactory.getLogger(HttpProcessorTemplate.class);
+	//protected static final Logger logger = LoggerFactory.getLogger(HttpProcessorTemplate.class);
 	/**
 	 * 
 	 * @use 处理规范，维护执行流程顺序
@@ -40,7 +40,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 		
 		long now = System.nanoTime();
 		long elapsed = (now - start) / 1000000;
-		logger.info("url:{},elapsed:{}ms",request.getUri(),elapsed);
+		//logger.info("url:{},elapsed:{}ms",request.getUri(),elapsed);
 	}
 	
 	/**

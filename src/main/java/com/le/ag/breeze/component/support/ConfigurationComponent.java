@@ -60,6 +60,11 @@ public class ConfigurationComponent extends StandardComponent {
 	public static Configuration getConfiguration(String configType) throws Exception{
 		return XMLUtil.parse(Constants.DEFAULT_CONFIG_FILE,configType);
 	}
+	
+	public static Integer getInt(String key) {
+		// TODO Auto-generated method stub
+		return cfg.getInt(key);
+	}
 
 	public static String getString(String key) {
 		// TODO Auto-generated method stub

@@ -38,7 +38,7 @@ public class NettyConnectorSupport extends AsynConnector{
 	// 线程组
 	private EventLoopGroup bossGroup;
 	private EventLoopGroup workGroup;
-    // 创建一个16个线程的线程组来处理耗时的业务逻辑                      
+    // 创建一个线程组来处理耗时的业务逻辑                      
     private EventExecutorGroup  eventExecutor;
 		
 	//初始化
@@ -91,7 +91,11 @@ public class NettyConnectorSupport extends AsynConnector{
 	                        //主要用于处理大数据流
 	                        ch.pipeline().addLast("http-chunkedWriter", new ChunkedWriteHandler());         
 	                        //加强业务逻辑处理效率
-	                        ch.pipeline().addLast(eventExecutor,"http-processor",new HttpHandler());  
+	                        if(null == eventExecutor){
+	                        	ch.pipeline().addLast("http-processor",new HttpHandler());  
+	                        }else {
+		                        ch.pipeline().addLast(eventExecutor,"http-processor",new HttpHandler());  
+	                        }
 	                        
 	                        /**
 	                        // 这里只允许增加无状态允许共享的ChannelHandler，对于有状态的channelHandler需要重写
