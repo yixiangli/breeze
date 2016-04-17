@@ -13,6 +13,17 @@ public class ClassPathPropertiesConfigurationComponent extends PropertiesConfigu
 		return this.properties.containsKey(key);
     }
 	
+    public Integer getInt(String key){
+    	String valueStr = this.properties.getProperty(key);
+    	Integer value;
+    	try{
+    		//防止用户配置前后带空格
+    		value= Integer.parseInt(valueStr.trim());
+    	}catch (Exception e){
+    		return null;
+    	}
+    	return value;
+    }
 
 	@Override
 	public String getString(String key) {

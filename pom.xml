@@ -4,7 +4,7 @@
 
   <groupId>com.le.ag</groupId>
   <artifactId>breeze</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
 
   <name>breeze</name>

@@ -8,6 +8,7 @@ import com.le.ag.breeze.WebLoader;
 import com.le.ag.breeze.component.StandardComponent;
 import com.le.ag.breeze.connector.processor.ServiceLocator;
 import com.le.ag.breeze.exception.LifecycleException;
+import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.util.StringUtils;
 
 public class ServiceLocatorComponent extends StandardComponent {
@@ -27,7 +28,7 @@ public class ServiceLocatorComponent extends StandardComponent {
 		// TODO Auto-generated method stub
 		String serviceLocatorClazz = ConfigurationComponent.getString(Constants.SERVICE_LOCATOR_SUPPORT);
 		if(StringUtils.isBlank(serviceLocatorClazz)){
-			
+			throw new ServerException();
 		}else {
 			serviceLocator = (ServiceLocator)WebLoader.getInstance(serviceLocatorClazz);
 			if (serviceLocator == null) {

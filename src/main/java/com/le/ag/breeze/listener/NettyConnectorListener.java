@@ -6,7 +6,9 @@ import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.Lifecycle;
+import com.le.ag.breeze.component.support.ConfigurationComponent;
 import com.le.ag.breeze.connector.Connector;
 import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
@@ -33,11 +35,30 @@ public class NettyConnectorListener implements LifecycleListener {
 		if(event.getType().equals(Lifecycle.BEFORE_INIT_EVENT)){
 			//线程设置
 			if(connector instanceof NettyConnectorSupport){
-				((NettyConnectorSupport) connector).setEventExecutor(new DefaultEventExecutorGroup(16));
-				//处理客户端接收 绑定等工作的线程
-				((NettyConnectorSupport) connector).setBossGroup(new NioEventLoopGroup());
+				
+				Integer bossGroupNumber = ConfigurationComponent.getInt(Constants.BOSS_GROUP_NUM);
+				Integer workerGroupNumber = ConfigurationComponent.getInt(Constants.WORK_GROUP_NUM);
+				Integer eventExecutorGroupNum = ConfigurationComponent.getInt(Constants.EVENT_EXECUTOR_GROUP_NUM);
+				
+				//boss线程数
+				if(null == bossGroupNumber){
+					//处理客户端接收 绑定等工作的线程
+					((NettyConnectorSupport) connector).setBossGroup(new NioEventLoopGroup());
+				}else {
+					((NettyConnectorSupport) connector).setBossGroup(new NioEventLoopGroup(bossGroupNumber));
+				}
+				
+				//worker线程数
+				if(null == workerGroupNumber){
+					((NettyConnectorSupport) connector).setWorkGroup(new NioEventLoopGroup());
+				}else {
+					((NettyConnectorSupport) connector).setWorkGroup(new NioEventLoopGroup(workerGroupNumber));
+				}
+				
 		        //处理handler业务
-				((NettyConnectorSupport) connector).setWorkGroup(new NioEventLoopGroup());
+				if(null != eventExecutorGroupNum){
+					((NettyConnectorSupport) connector).setEventExecutor(new DefaultEventExecutorGroup(eventExecutorGroupNum));
+				}
 			}
 		}
 	}

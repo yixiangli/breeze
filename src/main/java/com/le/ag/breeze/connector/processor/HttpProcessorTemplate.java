@@ -17,7 +17,6 @@ import com.le.ag.breeze.message.RequestMessageFacade;
  */
 public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 
-	protected static final Logger logger = LoggerFactory.getLogger(HttpProcessorTemplate.class);
 	/**
 	 * 
 	 * @use 处理规范，维护执行流程顺序
@@ -25,8 +24,6 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @return
 	 */
 	public void process(ChannelHandlerContext ctx,FullHttpRequest request) throws Exception{
-		
-		long start = System.nanoTime();
 		//请求封装
 		RequestMessageFacade requestMsg = encapsulate(request);
 		//请求拦截
@@ -37,10 +34,6 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 		Object result = execute(invokeService,requestMsg);
 		//结果处理
 		sendResponse(ctx,result);
-		
-		long now = System.nanoTime();
-		long elapsed = (now - start) / 1000000;
-		logger.info("url:{},elapsed:{}ms",request.getUri(),elapsed);
 	}
 	
 	/**

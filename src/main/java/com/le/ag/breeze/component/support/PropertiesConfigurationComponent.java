@@ -70,4 +70,15 @@ public class PropertiesConfigurationComponent implements Configuration {
         return false;
 	}
 
+	@Override
+	public Integer getInt(String key) {
+		// TODO Auto-generated method stub
+		for (Configuration configuration : configurations) {
+            if (configuration.containsKey(key)) {
+                return configuration.getInt(key);
+            }
+        }
+		return null;
+	}
+
 }
