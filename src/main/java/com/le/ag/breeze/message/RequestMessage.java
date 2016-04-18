@@ -109,9 +109,25 @@ public class RequestMessage {
 		return null;
 	}
 
-	public String getRemoteAddr() {
+	/**
+	 * 
+	 * @use 获取X-Forward-For
+	 * @param
+	 * @return
+	 */
+	public String getXForwardFor(){
+		return HttpHeaders.getHeader(request, Constants.HTTP_HEADER_X_FORWARD_FOR);
+	}
+	
+	/**
+	 * 
+	 * @use 获取X-Real-Ip
+	 * @param
+	 * @return
+	 */
+	public String getRealIp() {
 		// TODO Auto-generated method stub
-		return null;
+		return HttpHeaders.getHeader(request, Constants.HTTP_HEADER_X_REAL_IP);
 	}
 
 	public String getRemoteHost() {

@@ -4,9 +4,7 @@ master
                                                        bug-2:应用模块需要配置netty依赖  时间2016-4-16
 													   bug-3:post请求异常                 时间2016-4-17
 
-
 2016-4-17             v1.0.1 Pre-alpha           解决:bug-3
-
 
 2016-4-17             v1.0.2 Pre-alpha           优化:引擎线程数可以通过用户properties配置设置
  													   
@@ -16,5 +14,5 @@ master
 													   
 2016-4-17             v1.0.3 Pre-alpha           优化:log日志清理
 													   
-													   
+2016-4-18             v1.0.3.1 Pre-alpha         优化:无用类清理/新增获取remoteAddr功能/拦截favicon.ico请求												   
 													   

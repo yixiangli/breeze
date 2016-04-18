@@ -34,9 +34,15 @@ public final class Constants {
 	//Symbol
 	public static final String QUESTION_MARK = "?";
 	public static final String AND = "&";
+	public static final String FAVICON_ICO = "/favicon.ico";
 	
 	//Executor
 	public static final String BOSS_GROUP_NUM = "BossGroupNumber";
 	public static final String WORK_GROUP_NUM = "WorkGroupNumber";
 	public static final String EVENT_EXECUTOR_GROUP_NUM = "EventExecutorGroupNumber";
+
+	//HTTP
+	public static final String HTTP_HEADER_X_FORWARD_FOR = "X-Forwarded-For";
+	public static final String HTTP_HEADER_X_REAL_IP = "X-Real-IP";
+
 } 

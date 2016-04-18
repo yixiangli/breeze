@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.le.ag.breeze.util.StringUtils;
+
 import io.netty.handler.codec.http.Cookie;
 import io.netty.handler.codec.http.FullHttpRequest;
 
@@ -94,10 +96,18 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 		return null;
 	}
 
+	/**
+	 * 获取远程调用地址
+	 * 先取X-Real_Ip 如果不存在 取X-Forward-For
+	 */
 	@Override
 	public String getRemoteAddr() {
 		// TODO Auto-generated method stub
-		return null;
+		String remoteAddr = requestMessage.getRealIp();
+		if(StringUtils.isBlank(remoteAddr)){
+			return requestMessage.getXForwardFor();
+		}
+		return remoteAddr;
 	}
 
 	@Override

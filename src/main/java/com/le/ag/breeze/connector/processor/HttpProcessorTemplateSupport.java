@@ -46,6 +46,11 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		// TODO Auto-generated method stub
 		//请求url拦截 
 		String uri = request.getRequestURI();
+		
+		//拦截favicon.ico请求
+		if(uri.endsWith(Constants.FAVICON_ICO)){
+			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
+		}
 		//urlrewriter匹配
 		String reUri =  UrlRewriteComponent.urlMapping(uri);
 		if(StringUtils.isEmpty(reUri)){
