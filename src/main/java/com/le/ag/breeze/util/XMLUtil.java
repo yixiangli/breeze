@@ -72,7 +72,8 @@ public final class XMLUtil {
     	logger.info("初始化xml文件配置, {}", configFile);
 
         //获取文件流
-    	InputStream is = WebLoader.getStreamByResourceName(configFile);
+    	InputStream is = WebLoader.getStreamByResourceName(configFile);    	
+   
         if (is == null) {
             logger.error("config文件不存在");
             throw new ServerException("config文件不存在");
@@ -122,6 +123,7 @@ public final class XMLUtil {
         Document xmlDoc = buildXMLDocument(inputStream);
         // process include node
         NodeList includeNodes = (NodeList) INCLUDE_XPATH_EXPRESSION.evaluate(xmlDoc, XPathConstants.NODESET);
+
         for (int i = 0; i < includeNodes.getLength(); i++) {
             Element includeElement = (Element) includeNodes.item(i);
             rules.putAll(parse(includeElement.getAttribute(Constants.INCLUDE_SOURCE)));
@@ -129,6 +131,7 @@ public final class XMLUtil {
 
         // process rule node
         NodeList ruleNodes = (NodeList) RULE_XPATH_EXPRESSION.evaluate(xmlDoc, XPathConstants.NODESET);
+
         for (int i = 0; i < ruleNodes.getLength(); i++) {
             Element ruleElement = (Element) ruleNodes.item(i);
             //对外url
