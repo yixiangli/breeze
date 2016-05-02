@@ -36,9 +36,9 @@ import com.le.ag.breeze.util.StringUtils;
 public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
 	@Override
-	protected RequestMessageFacade encapsulate(FullHttpRequest request) throws Exception {
+	protected RequestMessageFacade encapsulate(FullHttpRequest request,ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		return new RequestMessageFacade(request);	
+		return new RequestMessageFacade(request,ctx);	
 	}
 
 	@Override

@@ -17,3 +17,5 @@ master
 2016-4-18             v1.0.3.1 Pre-alpha         优化:无用类清理/新增获取remoteAddr功能/拦截favicon.ico请求												   
 													   
 2016-4-27             v1.0.3.2 Pre-alpha         解决:bug-4 由于xpath.compile中路径表达式设置有误,rule规则只生效第一个配置
+
+2016-4-30			 v1.0.3.3 Pre-alpha         优化:获取remoteAddress,新增从context中获取hostAddress

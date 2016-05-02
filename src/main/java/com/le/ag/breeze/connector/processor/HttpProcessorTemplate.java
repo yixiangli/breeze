@@ -25,7 +25,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 */
 	public void process(ChannelHandlerContext ctx,FullHttpRequest request) throws Exception{
 		//请求封装
-		RequestMessageFacade requestMsg = encapsulate(request);
+		RequestMessageFacade requestMsg = encapsulate(request,ctx);
 		//请求拦截
 		interceptRequest(requestMsg);
 		//服务定位
@@ -42,7 +42,7 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @param
 	 * @return
 	 */
-	protected abstract RequestMessageFacade encapsulate(FullHttpRequest request) throws Exception;
+	protected abstract RequestMessageFacade encapsulate(FullHttpRequest request,ChannelHandlerContext ctx) throws Exception;
 	
 	/**
 	 * 

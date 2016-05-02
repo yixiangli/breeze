@@ -1,5 +1,6 @@
 package com.le.ag.breeze.message;
 
+import java.net.InetSocketAddress;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map.Entry;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 import com.le.ag.breeze.util.StringUtils;
 
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.Cookie;
 import io.netty.handler.codec.http.FullHttpRequest;
 
@@ -19,10 +21,12 @@ import io.netty.handler.codec.http.FullHttpRequest;
 public class RequestMessageFacade implements HttpRequestMessageContext{
 
 	protected RequestMessage requestMessage;
+	private ChannelHandlerContext context;
 
-	public RequestMessageFacade(FullHttpRequest request) {
+	public RequestMessageFacade(FullHttpRequest request,ChannelHandlerContext ctx) {
 		// TODO Auto-generated constructor stub
 		requestMessage = new RequestMessage(request);
+		this.context = ctx;
 	}
 	
 	@Override
@@ -103,9 +107,15 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	@Override
 	public String getRemoteAddr() {
 		// TODO Auto-generated method stub
+		//先获取real-ip
 		String remoteAddr = requestMessage.getRealIp();
+		//获取x-forward-for
 		if(StringUtils.isBlank(remoteAddr)){
-			return requestMessage.getXForwardFor();
+			remoteAddr = requestMessage.getXForwardFor();
+		}
+		//获取hostAddress
+		if(StringUtils.isBlank(remoteAddr)){
+			remoteAddr = ((InetSocketAddress) context.channel().remoteAddress()).getAddress().getHostAddress();
 		}
 		return remoteAddr;
 	}
