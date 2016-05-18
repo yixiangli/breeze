@@ -30,7 +30,7 @@ public class ReflectUtil {
 	 * @param
 	 * @return
 	 */
-	public static Method getMethod(Class clazz, String methodName, Class[] paramTypes) {
+	public static Method getMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes) {
         MethodDescriptor md = new MethodDescriptor(clazz, methodName, paramTypes);
         //先取缓存
         Method method = getCachedMethod(md);

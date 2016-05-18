@@ -1,12 +1,8 @@
 package com.le.ag.breeze.server.facade;
 
 import com.le.ag.breeze.exception.LifecycleException;
-import com.le.ag.breeze.exception.ServerException;
-import com.le.ag.breeze.listener.ServiceListener;
 import com.le.ag.breeze.server.Server;
-import com.le.ag.breeze.service.Service;
 import com.le.ag.breeze.support.ServerSupport;
-import com.le.ag.breeze.support.ServiceSupport;
 
 /**
  * 
@@ -19,9 +15,7 @@ public class BreezeServerFacade{
 	
 	//服务器 
 	private Server server;
-	//服务
-	private Service service;
-	
+
 	//服务启动
 	public void startup(int port) {
 		// TODO Auto-generated method stub

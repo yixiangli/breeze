@@ -1,6 +1,5 @@
 package com.le.ag.breeze.support;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 

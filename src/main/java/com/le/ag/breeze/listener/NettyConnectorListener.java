@@ -12,7 +12,6 @@ import com.le.ag.breeze.component.support.ConfigurationComponent;
 import com.le.ag.breeze.connector.Connector;
 import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
-import com.le.ag.breeze.exception.LifecycleException;
 import com.le.ag.breeze.exception.ServerException;
 
 public class NettyConnectorListener implements LifecycleListener {

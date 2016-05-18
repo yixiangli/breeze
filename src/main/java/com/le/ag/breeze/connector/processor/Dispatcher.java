@@ -1,7 +1,5 @@
 package com.le.ag.breeze.connector.processor;
 
-import io.netty.handler.codec.http.HttpMethod;
-
 import com.le.ag.breeze.message.RequestMessageFacade;
 
 /**

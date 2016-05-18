@@ -4,7 +4,6 @@ import io.netty.handler.codec.http.Cookie;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import io.netty.util.CharsetUtil;
 
@@ -16,7 +15,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.le.ag.breeze.Constants;
-import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.util.StringUtils;
 
 /**
@@ -25,6 +23,7 @@ import com.le.ag.breeze.util.StringUtils;
  * @date 2016年4月7日
  * @use request message packaged
  */
+@SuppressWarnings("deprecation")
 public class RequestMessage {
 
 	//netty 提供的request
@@ -89,7 +88,7 @@ public class RequestMessage {
         return null;
 	}
 
-	public Enumeration getParameterNames() {
+	public Enumeration<?> getParameterNames() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -102,7 +102,8 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 			response.content().writeBytes(Unpooled.copiedBuffer((byte[]) result));
 		} else if (result instanceof Map) {
 			// 302 307 or other status
-			Map<String, Object> resMap = (Map) result;
+			@SuppressWarnings("unchecked")
+			Map<String, Object> resMap = (Map<String, Object>) result;
 			if (resMap != null) {
 				Object statusObj = resMap.get("status");
 				if (statusObj != null && statusObj instanceof HttpResponseStatus) {

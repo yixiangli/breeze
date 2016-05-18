@@ -1,5 +1,9 @@
 package com.le.ag.breeze.message;
 
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.http.Cookie;
+import io.netty.handler.codec.http.FullHttpRequest;
+
 import java.net.InetSocketAddress;
 import java.util.Enumeration;
 import java.util.List;
@@ -8,16 +12,13 @@ import java.util.Set;
 
 import com.le.ag.breeze.util.StringUtils;
 
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.Cookie;
-import io.netty.handler.codec.http.FullHttpRequest;
-
 /**
  * 
  * @author liyixiang <liyixiang@letv.com>
  * @date 2016年4月7日
  * @use request请求门面
  */
+@SuppressWarnings("deprecation")
 public class RequestMessageFacade implements HttpRequestMessageContext{
 
 	protected RequestMessage requestMessage;
@@ -77,7 +78,7 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	}
 
 	@Override
-	public Enumeration getParameterNames() {
+	public Enumeration<?> getParameterNames() {
 		// TODO Auto-generated method stub
 		return null;
 	}

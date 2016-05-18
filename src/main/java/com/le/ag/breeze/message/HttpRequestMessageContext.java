@@ -13,6 +13,7 @@ import java.util.Set;
  * @date 2016年4月8日
  * @use request上下文
  */
+@SuppressWarnings("deprecation")
 public interface HttpRequestMessageContext {
 
 	public String getHeader(String name);
@@ -35,7 +36,7 @@ public interface HttpRequestMessageContext {
 	
     public String getParameter(String name);
     
-    public Enumeration getParameterNames();
+    public Enumeration<?> getParameterNames();
     
     public String[] getParameterValues(String name);
     

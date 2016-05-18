@@ -3,10 +3,6 @@ package com.le.ag.breeze.connector.processor;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.message.RequestMessageFacade;
 
 /**
