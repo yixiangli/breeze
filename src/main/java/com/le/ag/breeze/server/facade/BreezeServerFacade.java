@@ -6,10 +6,16 @@ import com.le.ag.breeze.support.ServerSupport;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @developer liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月17日
- * @use breeze服务门面 所有application都需要继承这个类
- * 		  breeze server center facade, all application needs extends this class
+ * @since JDK 1.7
+ * @Function breeze服务外观 所有application的启动入口类都需要继承这个类
+ * 			   breeze server center facade, all application needs extends this class used by start the server.
+ * @Reason
  */
 public class BreezeServerFacade{
 	
@@ -22,7 +28,7 @@ public class BreezeServerFacade{
 		//初始化服务
 		try {
 			initServer(port);
-		}catch (Exception e){			
+		} catch (Exception e){			
 			//初始化异常抛出
 			e.printStackTrace();
 			server.destory();
@@ -30,7 +36,7 @@ public class BreezeServerFacade{
 		//启动服务
 		try{
 			server.start();
-		}catch (Exception e){
+		} catch (Exception e){
 			e.printStackTrace();
 			server.destory();
 		}

@@ -8,9 +8,16 @@ import com.le.ag.breeze.server.Server;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @developer liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月9日
- * @use Service统一服务接口 用于连接connector与component
+ * @since JDK 1.7
+ * @Function Service统一服务接口 用于连接connector与component
+ * 			   Service interfacr used by bridging connector and component
+ * @Reason 
  */
 public interface Service extends Lifecycle{
 

@@ -3,20 +3,28 @@ package com.le.ag.breeze.server;
 import com.le.ag.breeze.Lifecycle;
 import com.le.ag.breeze.service.Service;
 
-
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @developer liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月14日
- * @use 服务器 服务中心 特指breeze 
+ * @since JDK 1.7
+ * @Function 服务中心
+ *             server center
+ * @Reason
  */
 public interface Server extends Lifecycle{
 
 	/**
 	 * 
-	 * @use 添加service 对外所需提供的服务，一种抽象的概念
-	 * @param service: 一种具体的服务
-	 * @return
+	 * @developer liyixiang
+	 * @date 2016年3月14日 上午11:49:08
+	 * @descriptor
+	 * @Function 添加service 对外所需提供的服务，一种抽象的概念
+	 * @param service
 	 */
 	public void addService(Service service);
 	

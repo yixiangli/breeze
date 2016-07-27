@@ -14,9 +14,16 @@ import com.le.ag.breeze.util.StringUtils;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @developer liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月7日
- * @use request请求门面
+ * @since JDK 1.7
+ * @Function request请求门面
+ * 			    request facade
+ * @Reason 
  */
 @SuppressWarnings("deprecation")
 public class RequestMessageFacade implements HttpRequestMessageContext{

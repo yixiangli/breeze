@@ -10,8 +10,21 @@ import java.util.Set;
 /**
  * 
  * @author liyixiang <liyixiang@letv.com>
+ * @date 
+ * @use 
+ */
+/**
+ * 
+ * @developer liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月8日
- * @use request上下文
+ * @since JDK 1.7
+ * @Function request上下文
+ *             request context
+ * @Reason
  */
 @SuppressWarnings("deprecation")
 public interface HttpRequestMessageContext {
