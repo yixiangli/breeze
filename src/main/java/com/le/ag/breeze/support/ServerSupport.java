@@ -8,9 +8,14 @@ import com.le.ag.breeze.service.Service;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月18日
- * @use 服务中心实例
+ * @since JDK 1.7
+ * @Function 服务中心实例
  */
 public class ServerSupport extends LifecycleMBeanBase implements Server {
 

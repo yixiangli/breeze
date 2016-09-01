@@ -6,9 +6,14 @@ import com.le.ag.breeze.listener.LifecycleListener;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月10日
- * @use 生命周期基本实现
+ * @since JDK 1.7
+ * @Function 生命周期基本实现
  */
 public class LifecycleSupport {
 

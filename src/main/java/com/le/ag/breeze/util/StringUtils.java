@@ -4,9 +4,14 @@ import java.util.Locale;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月8日
- * @use 	String工具类 复用apache common StringUtils
+ * @since JDK 1.7
+ * @Function String工具类 复用apache common StringUtils
  */
 public class StringUtils {
 

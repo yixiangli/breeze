@@ -12,9 +12,14 @@ import com.le.ag.breeze.exception.ServerException;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月8日
- * @use url重定向工具类
+ * @since JDK 1.7
+ * @Function url重定向工具类
  */
 public class UrlRewriteUtil {
 

@@ -8,6 +8,17 @@ import com.le.ag.breeze.listener.LifecycleListener;
 import com.le.ag.breeze.server.Server;
 import com.le.ag.breeze.service.Service;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function service实现
+ */
 public class ServiceSupport extends LifecycleMBeanBase implements Service {
 
 	//服务
