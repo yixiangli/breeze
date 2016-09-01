@@ -23,7 +23,6 @@ import com.le.ag.breeze.util.StringUtils;
  * @since JDK 1.7
  * @Function request请求门面
  * 			    request facade
- * @Reason 
  */
 @SuppressWarnings("deprecation")
 public class RequestMessageFacade implements HttpRequestMessageContext{

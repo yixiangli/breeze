@@ -1,5 +1,16 @@
 package com.le.ag.breeze.exception;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function 生命周期内异常
+ */
 public final class LifecycleException extends Exception{
 
 	/**

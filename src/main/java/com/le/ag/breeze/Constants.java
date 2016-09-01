@@ -2,9 +2,14 @@ package com.le.ag.breeze;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月12日
- * @use 系统常量
+ * @since JDK 1.7
+ * @Function 常量
  */
 public final class Constants {
 
@@ -17,6 +22,7 @@ public final class Constants {
 	public static final String TO = "to/text()";
 	public static final String INCLUDE_SOURCE = "resource";
 	
+	//用户配置的xml
 	public static final String DEFAULT_CONFIG_FILE = "config.xml";
 	public static final String DEFAULT_URL_REWRITE_FILE = "urlrewrite.xml";
 

@@ -13,6 +13,17 @@ import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.service.Service;
 import com.le.ag.breeze.support.ServiceSupport;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function service监听器
+ */
 public class ServiceListener implements LifecycleListener {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceListener.class);

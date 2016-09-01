@@ -5,9 +5,14 @@ import com.le.ag.breeze.listener.LifecycleListener;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月8日
- * @use 生命周期基类
+ * @since JDK 1.7
+ * @Function 生命周期基础接口
  */
 public interface Lifecycle {
 
@@ -21,8 +26,7 @@ public interface Lifecycle {
      * The LifecycleEvent type for the "component init" event.
      */
     public static final String INIT_EVENT = "init";
-    
-    
+       
     /**
      * The LifecycleEvent type for the "component after init" event.
      */
@@ -112,10 +116,19 @@ public interface Lifecycle {
 	void destory();
 	
 	
+	/*
+	 * 添加监听器
+	 */
 	void addLifecycleListener(LifecycleListener lister);
 	
+	/*
+	 * 移除监听器
+	 */
 	void removeLifecycleListener();
 	
+	/*
+	 * 迭代监听器
+	 */
 	LifecycleListener[] findLifecycleListeners();
 	
 	

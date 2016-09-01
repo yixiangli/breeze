@@ -4,9 +4,14 @@ import com.le.ag.breeze.event.LifecycleEvent;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月10日
- * @use 组件生命周期监听器
+ * @since JDK 1.7
+ * @Function 组件生命周期监听器
  */
 public interface LifecycleListener {
 

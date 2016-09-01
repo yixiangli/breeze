@@ -14,6 +14,17 @@ import com.le.ag.breeze.connector.support.NettyConnectorSupport;
 import com.le.ag.breeze.event.LifecycleEvent;
 import com.le.ag.breeze.exception.ServerException;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function 连接监听器
+ */
 public class NettyConnectorListener implements LifecycleListener {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyConnectorListener.class);

@@ -6,9 +6,14 @@ import com.le.ag.breeze.Lifecycle;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月10日
- * @use 生命周期事件，基于java.util.EventObject实现
+ * @since JDK 1.7
+ * @Function 生命周期事件，基于java.util.EventObject实现
  * 封装了事件源对象及跟事件相关的信息。
  */
 public class LifecycleEvent extends EventObject{

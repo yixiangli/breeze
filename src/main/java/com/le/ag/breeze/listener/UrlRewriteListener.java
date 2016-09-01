@@ -8,6 +8,17 @@ import com.le.ag.breeze.component.Component;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.event.LifecycleEvent;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function url重写监听器
+ */
 public final class UrlRewriteListener implements LifecycleListener {
 
     private static final Logger logger = LoggerFactory.getLogger(UrlRewriteListener.class);

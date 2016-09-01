@@ -13,7 +13,7 @@ import com.le.ag.breeze.util.StringUtils;
  * 
  * @author liyixiang <liyixiang@letv.com>
  * @date 2016年4月10日
- * @use 支持properties形式的配置文件
+ * @use 支持properties形式的配置文件组件
  */
 public class PropertiesConfigurationComponent implements Configuration {
 

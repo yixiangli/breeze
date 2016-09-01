@@ -2,15 +2,20 @@ package com.le.ag.breeze;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月10日
- * @use 配置基类
+ * @since JDK 1.7
+ * @Function 配置文件获取接口
  */
 public interface Configuration {
 
 	/**
 	 * 
-	 * @use 根据key 获取value
+	 * @use 根据key 获取String类型的value 
 	 * @param
 	 * @return
 	 */
@@ -18,7 +23,7 @@ public interface Configuration {
 	
 	/**
 	 * 
-	 * @use 根据key 获取value
+	 * @use 根据key 获取int类型的value 
 	 * @param
 	 * @return
 	 */

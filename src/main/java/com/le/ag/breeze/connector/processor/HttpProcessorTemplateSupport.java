@@ -26,12 +26,16 @@ import com.le.ag.breeze.message.RequestMessageFacade;
 import com.le.ag.breeze.util.ReflectUtil;
 import com.le.ag.breeze.util.StringUtils;
 
-
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月5日
- * @use http处理模版实现类
+ * @since JDK 1.7
+ * @Function http处理模版实现类
  */
 public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 

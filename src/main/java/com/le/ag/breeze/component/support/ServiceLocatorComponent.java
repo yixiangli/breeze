@@ -11,6 +11,17 @@ import com.le.ag.breeze.exception.LifecycleException;
 import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.util.StringUtils;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function 服务定位组件
+ */
 public class ServiceLocatorComponent extends StandardComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLocatorComponent.class);

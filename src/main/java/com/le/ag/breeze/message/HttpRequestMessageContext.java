@@ -9,13 +9,7 @@ import java.util.Set;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
- * @date 
- * @use 
- */
-/**
- * 
- * @developer liyixiang
+ * @author liyixiang <liyixiang@le.com>
  * @Info
  * * * @Company leEco
  * * * @Email <liyixiang@le.com>

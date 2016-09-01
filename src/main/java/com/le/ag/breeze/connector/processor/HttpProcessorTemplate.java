@@ -7,9 +7,14 @@ import com.le.ag.breeze.message.RequestMessageFacade;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月5日
- * @use 处理器模版 统一规范处理流程
+ * @since JDK 1.7
+ * @Function 处理器模版 统一规范处理流程
  */
 public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 

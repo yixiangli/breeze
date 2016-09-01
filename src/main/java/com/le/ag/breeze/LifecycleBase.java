@@ -6,12 +6,18 @@ import com.le.ag.breeze.support.LifecycleSupport;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月10日
- * @use 生命周期控制基类
+ * @since JDK 1.7
+ * @Function 生命周期基础类
  */
 public abstract class LifecycleBase implements Lifecycle {
 
+	//组合
 	private LifecycleSupport lifecycle = new LifecycleSupport(this);
 	
 	@Override
