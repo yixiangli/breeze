@@ -14,8 +14,14 @@ import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
@@ -23,6 +29,8 @@ import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.message.HttpRequestMessageContext;
 import com.le.ag.breeze.message.RequestMessageFacade;
+import com.le.ag.breeze.support.WebClassLoader;
+import com.le.ag.breeze.util.BeanUtil;
 import com.le.ag.breeze.util.ReflectUtil;
 import com.le.ag.breeze.util.StringUtils;
 
@@ -39,6 +47,8 @@ import com.le.ag.breeze.util.StringUtils;
  */
 public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
+    private static final Logger logger = LoggerFactory.getLogger(HttpProcessorTemplateSupport.class);
+	
 	@Override
 	protected RequestMessageFacade encapsulate(FullHttpRequest request,ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
@@ -82,7 +92,36 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 	@Override
 	protected Object execute(Object invokeService,RequestMessageFacade requestMsgCtx) throws Exception {
 		// TODO Auto-generated method stub
+		//获取请求参数名
+		Set<String> setName = requestMsgCtx.getParameterNames();	
 		// 根据service method invoke服务 参数为MessageContext
+		Method[] methods = invokeService.getClass().getMethods();
+		for(Method method : methods){
+			//方法比较
+			if(method.getName().equals(requestMsgCtx.getParameter(Constants.METHOD_PARAM))){
+				//获取方法参数列表
+				Class[] typeClass = method.getParameterTypes();
+				//注入
+				for(Class cls : typeClass){					
+					//接口类型屏蔽
+					if(cls.isInterface()){
+						continue;
+					}
+									
+					Object bean = WebClassLoader.getInstance(cls.getName());
+					
+					for(String name : setName){
+						try {
+							BeanUtil.setProperty(bean, name, requestMsgCtx.getParameter(name));
+						}catch (Exception e){
+							logger.error("has exception",e);
+							continue;
+						}
+					}
+				}
+			}
+		}
+						
 		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), requestMsgCtx.getParameter(Constants.METHOD_PARAM),new Class[] { HttpRequestMessageContext.class });
 		Object invokeResult = _invokeMethod.invoke(invokeService, new Object[] { requestMsgCtx });
 		return invokeResult;
@@ -120,6 +159,10 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 			}
 		}
 		ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+	}
+	
+	private void injectParam(){
+		
 	}
 
 }

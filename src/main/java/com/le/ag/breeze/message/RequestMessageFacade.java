@@ -84,9 +84,9 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	}
 
 	@Override
-	public Enumeration<?> getParameterNames() {
+	public Set<String> getParameterNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getParameterNames();
 	}
 
 	@Override

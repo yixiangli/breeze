@@ -43,7 +43,7 @@ public interface HttpRequestMessageContext {
 	
     public String getParameter(String name);
     
-    public Enumeration<?> getParameterNames();
+    public Set<String> getParameterNames();
     
     public String[] getParameterValues(String name);
     

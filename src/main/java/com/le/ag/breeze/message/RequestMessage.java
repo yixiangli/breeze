@@ -93,9 +93,9 @@ public class RequestMessage {
         return null;
 	}
 
-	public Enumeration<?> getParameterNames() {
+	public Set<String> getParameterNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return parameterMap.keySet();
 	}
 
 	public String[] getParameterValues(String name) {
