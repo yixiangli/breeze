@@ -50,5 +50,8 @@ public final class Constants {
 	//HTTP
 	public static final String HTTP_HEADER_X_FORWARD_FOR = "X-Forwarded-For";
 	public static final String HTTP_HEADER_X_REAL_IP = "X-Real-IP";
+	
+	//Limit
+	public static final String RATE_LIMITER_CONFIG = "Rate_limiter_config";
 
 } 

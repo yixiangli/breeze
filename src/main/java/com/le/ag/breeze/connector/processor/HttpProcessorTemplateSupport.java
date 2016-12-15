@@ -14,9 +14,7 @@ import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.le.ag.breeze.Constants;
+import com.le.ag.breeze.component.support.RateLimiterComponent;
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.exception.ServerException;
@@ -65,6 +64,11 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		if(uri.endsWith(Constants.FAVICON_ICO)){
 			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
 		}
+
+		//限流
+		boolean isLimit = RateLimiterComponent.limit(uri);
+		System.out.println(isLimit);
+		
 		//urlrewriter匹配
 		String reUri =  UrlRewriteComponent.urlMapping(uri);
 		if(StringUtils.isEmpty(reUri)){
@@ -72,6 +76,7 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		}
 		//重定向url注入
 		request.setRewriteUrl(reUri);
+
 		//请求method过滤 目前只是支持get post请求
 		String method = request.getMethod();
 		if(method != HttpMethod.POST.name() && method != HttpMethod.GET.name()){	
@@ -91,37 +96,7 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
 	@Override
 	protected Object execute(Object invokeService,RequestMessageFacade requestMsgCtx) throws Exception {
-		// TODO Auto-generated method stub
-		//获取请求参数名
-		Set<String> setName = requestMsgCtx.getParameterNames();	
-		// 根据service method invoke服务 参数为MessageContext
-		Method[] methods = invokeService.getClass().getMethods();
-		for(Method method : methods){
-			//方法比较
-			if(method.getName().equals(requestMsgCtx.getParameter(Constants.METHOD_PARAM))){
-				//获取方法参数列表
-				Class[] typeClass = method.getParameterTypes();
-				//注入
-				for(Class cls : typeClass){					
-					//接口类型屏蔽
-					if(cls.isInterface()){
-						continue;
-					}
-									
-					Object bean = WebClassLoader.getInstance(cls.getName());
-					
-					for(String name : setName){
-						try {
-							BeanUtil.setProperty(bean, name, requestMsgCtx.getParameter(name));
-						}catch (Exception e){
-							logger.error("has exception",e);
-							continue;
-						}
-					}
-				}
-			}
-		}
-						
+		// TODO Auto-generated method stub				
 		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), requestMsgCtx.getParameter(Constants.METHOD_PARAM),new Class[] { HttpRequestMessageContext.class });
 		Object invokeResult = _invokeMethod.invoke(invokeService, new Object[] { requestMsgCtx });
 		return invokeResult;
@@ -159,10 +134,6 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 			}
 		}
 		ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-	}
-	
-	private void injectParam(){
-		
 	}
 
 }

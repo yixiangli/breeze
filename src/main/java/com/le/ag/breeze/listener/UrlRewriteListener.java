@@ -3,7 +3,6 @@ package com.le.ag.breeze.listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.le.ag.breeze.Lifecycle;
 import com.le.ag.breeze.component.Component;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
 import com.le.ag.breeze.event.LifecycleEvent;
@@ -34,6 +33,7 @@ public final class UrlRewriteListener implements LifecycleListener {
 			logger.error("",e);
 		}
 		
+		/**   开发示例demo
 		//初始化之前
 		if(event.getType().equals(Lifecycle.BEFORE_INIT_EVENT)){
 
@@ -44,6 +44,7 @@ public final class UrlRewriteListener implements LifecycleListener {
 		}else if(event.getType().equals(Lifecycle.AFTER_INIT_EVENT)) {
 			
 		}
+		**/
 	}
 
 }

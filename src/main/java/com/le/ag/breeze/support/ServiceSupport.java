@@ -31,12 +31,16 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
 	protected Connector connector = null;
 
 	@Override
-	public void addComponent(Component component) {
+	public void addComponent(Component component,LifecycleListener listener) {
 		// TODO Auto-generated method stub
 		Component results[] = new Component[components.length+1];
 		System.arraycopy(components, 0, results, 0, components.length);
         results[components.length] = component;
-        components = results;
+        components = results;     
+        //注册监听
+        if(null != listener){
+            component.addLifecycleListener(listener);
+        }
 	}
 
 	@Override
@@ -133,4 +137,5 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
         })); 
 		
 	}
+
 }
