@@ -24,9 +24,14 @@ import com.le.ag.breeze.exception.LifecycleException;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月9日
- * @use 连接服务中心－－－netty版
+ * @since JDK 1.7
+ * @Function 连接服务中心－－－netty版
  */
 public class NettyConnectorSupport extends AsynConnector{
 

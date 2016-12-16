@@ -11,9 +11,14 @@ import com.le.ag.breeze.util.XMLUtil;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月10日
- * @use Config组件
+ * @since JDK 1.7
+ * @Function Config组件
  */
 public class ConfigurationComponent extends StandardComponent {
 

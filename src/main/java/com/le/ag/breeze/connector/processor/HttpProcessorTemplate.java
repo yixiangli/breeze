@@ -2,14 +2,20 @@ package com.le.ag.breeze.connector.processor;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpResponseStatus;
 
 import com.le.ag.breeze.message.RequestMessageFacade;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月5日
- * @use 处理器模版 统一规范处理流程
+ * @since JDK 1.7
+ * @Function 处理器模版 统一规范处理流程
  */
 public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 
@@ -20,14 +26,20 @@ public abstract class HttpProcessorTemplate implements ProcessorTemplate{
 	 * @return
 	 */
 	public void process(ChannelHandlerContext ctx,FullHttpRequest request) throws Exception{
+		Object result;
 		//请求封装
 		RequestMessageFacade requestMsg = encapsulate(request,ctx);
 		//请求拦截
-		interceptRequest(requestMsg);
-		//服务定位
-		Object invokeService = serviceLocate(requestMsg);
-		//调用
-		Object result = execute(invokeService,requestMsg);
+		String interceptResult = interceptRequest(requestMsg);
+		
+		if(HttpResponseStatus.OK.reasonPhrase().equals(interceptResult)){
+			//服务定位
+			Object invokeService = serviceLocate(requestMsg);
+			//调用
+			result = execute(invokeService,requestMsg);
+		}else {
+			result = interceptResult;
+		}
 		//结果处理
 		sendResponse(ctx,result);
 	}

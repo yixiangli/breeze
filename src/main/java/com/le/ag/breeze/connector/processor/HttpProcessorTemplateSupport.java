@@ -17,24 +17,33 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.le.ag.breeze.Constants;
+import com.le.ag.breeze.component.support.RateLimiterComponent;
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
-import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.message.HttpRequestMessageContext;
 import com.le.ag.breeze.message.RequestMessageFacade;
 import com.le.ag.breeze.util.ReflectUtil;
 import com.le.ag.breeze.util.StringUtils;
 
-
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月5日
- * @use http处理模版实现类
+ * @since JDK 1.7
+ * @Function http处理模版实现类
  */
 public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
+    private static final Logger logger = LoggerFactory.getLogger(HttpProcessorTemplateSupport.class);
+	
 	@Override
 	protected RequestMessageFacade encapsulate(FullHttpRequest request,ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
@@ -49,21 +58,28 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		
 		//拦截favicon.ico请求
 		if(uri.endsWith(Constants.FAVICON_ICO)){
-			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
+			return HttpResponseStatus.NOT_FOUND.reasonPhrase();
 		}
+
+		//限流
+		if(!RateLimiterComponent.limit(uri)){
+			return HttpResponseStatus.TOO_MANY_REQUESTS.reasonPhrase();
+		}
+
 		//urlrewriter匹配
 		String reUri =  UrlRewriteComponent.urlMapping(uri);
 		if(StringUtils.isEmpty(reUri)){
-			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
+			return HttpResponseStatus.NOT_FOUND.reasonPhrase();
 		}
 		//重定向url注入
 		request.setRewriteUrl(reUri);
+
 		//请求method过滤 目前只是支持get post请求
 		String method = request.getMethod();
 		if(method != HttpMethod.POST.name() && method != HttpMethod.GET.name()){	
-			throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
+			return HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase();
 		}
-		return reUri;
+		return HttpResponseStatus.OK.reasonPhrase();
 	}
 
 	@Override
@@ -77,8 +93,7 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
 	@Override
 	protected Object execute(Object invokeService,RequestMessageFacade requestMsgCtx) throws Exception {
-		// TODO Auto-generated method stub
-		// 根据service method invoke服务 参数为MessageContext
+		// TODO Auto-generated method stub				
 		Method _invokeMethod = ReflectUtil.getMethod(invokeService.getClass(), requestMsgCtx.getParameter(Constants.METHOD_PARAM),new Class[] { HttpRequestMessageContext.class });
 		Object invokeResult = _invokeMethod.invoke(invokeService, new Object[] { requestMsgCtx });
 		return invokeResult;

@@ -2,9 +2,14 @@ package com.le.ag.breeze.connector.processor;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月11日
- * @use service定位
+ * @since JDK 1.7
+ * @Function service定位
  */
 public interface ServiceLocator {
 

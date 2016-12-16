@@ -19,9 +19,14 @@ import com.le.ag.breeze.util.StringUtils;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年4月7日
- * @use request message packaged
+ * @since JDK 1.7
+ * @Function request message packaged
  */
 @SuppressWarnings("deprecation")
 public class RequestMessage {
@@ -88,9 +93,9 @@ public class RequestMessage {
         return null;
 	}
 
-	public Enumeration<?> getParameterNames() {
+	public Set<String> getParameterNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return parameterMap.keySet();
 	}
 
 	public String[] getParameterValues(String name) {

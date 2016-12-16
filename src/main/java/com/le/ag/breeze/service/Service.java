@@ -26,7 +26,7 @@ public interface Service extends Lifecycle{
 	public Server getServer();
 		
 	//添加组件
-	public void addComponent(Component component);
+	public void addComponent(Component component,LifecycleListener listener);
 	
 	//添加引擎
 	public void addConnector(Connector connector,LifecycleListener listener);

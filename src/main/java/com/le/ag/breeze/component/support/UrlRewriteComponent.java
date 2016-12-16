@@ -15,9 +15,14 @@ import com.le.ag.breeze.util.XMLUtil;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月9日
- * @use url重写组件
+ * @since JDK 1.7
+ * @Function  url重写组件
  */
 public class UrlRewriteComponent extends StandardComponent {
 

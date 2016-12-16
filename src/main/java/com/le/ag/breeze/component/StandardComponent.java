@@ -5,9 +5,14 @@ import com.le.ag.breeze.exception.LifecycleException;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
- * @date 2016年3月11日
- * @use 标准组件
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function 标准组件实现
  */
 public abstract class StandardComponent extends LifecycleBase implements Component {
 

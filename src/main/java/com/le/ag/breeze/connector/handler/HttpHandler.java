@@ -18,9 +18,14 @@ import com.le.ag.breeze.connector.processor.ProcessorTemplate;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月21日
- * @use 请求处理
+ * @since JDK 1.7
+ * @Function 请求处理
  */
 public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest>{
 

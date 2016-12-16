@@ -10,9 +10,14 @@ import com.le.ag.breeze.exception.ServerException;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月12日
- * @use 封装jdk classloader工具
+ * @since JDK 1.7
+ * @Function 封装jdk classloader工具
  */
 public class WebClassLoader extends ClassLoader{
 

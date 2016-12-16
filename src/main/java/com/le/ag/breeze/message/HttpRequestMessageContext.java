@@ -9,13 +9,7 @@ import java.util.Set;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
- * @date 
- * @use 
- */
-/**
- * 
- * @developer liyixiang
+ * @author liyixiang <liyixiang@le.com>
  * @Info
  * * * @Company leEco
  * * * @Email <liyixiang@le.com>
@@ -49,7 +43,7 @@ public interface HttpRequestMessageContext {
 	
     public String getParameter(String name);
     
-    public Enumeration<?> getParameterNames();
+    public Set<String> getParameterNames();
     
     public String[] getParameterValues(String name);
     

@@ -23,7 +23,6 @@ import com.le.ag.breeze.util.StringUtils;
  * @since JDK 1.7
  * @Function request请求门面
  * 			    request facade
- * @Reason 
  */
 @SuppressWarnings("deprecation")
 public class RequestMessageFacade implements HttpRequestMessageContext{
@@ -85,9 +84,9 @@ public class RequestMessageFacade implements HttpRequestMessageContext{
 	}
 
 	@Override
-	public Enumeration<?> getParameterNames() {
+	public Set<String> getParameterNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return requestMessage.getParameterNames();
 	}
 
 	@Override

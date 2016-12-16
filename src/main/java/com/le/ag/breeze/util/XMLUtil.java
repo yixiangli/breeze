@@ -29,12 +29,16 @@ import com.le.ag.breeze.WebLoader;
 import com.le.ag.breeze.component.support.PropertiesConfigurationComponent;
 import com.le.ag.breeze.exception.ServerException;
 
-
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月11日
- * @use xml工具类
+ * @since JDK 1.7
+ * @Function xml工具类
  */
 public final class XMLUtil {
 

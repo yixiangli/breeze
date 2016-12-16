@@ -6,9 +6,14 @@ import javax.management.ObjectName;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
  * @date 2016年3月14日
- * @use MBean控制组件生命周期
+ * @since JDK 1.7
+ * @Function MBean控制组件生命周期
  */
 public abstract class LifecycleMBeanBase extends LifecycleBase implements MBeanRegistration{
 	

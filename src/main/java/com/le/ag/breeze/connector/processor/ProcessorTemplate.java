@@ -5,9 +5,14 @@ import io.netty.handler.codec.http.FullHttpRequest;
 
 /**
  * 
- * @author liyixiang <liyixiang@letv.com>
- * @date 2016年4月7日
- * @use 处理模版
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function 处理模版
  */
 public interface ProcessorTemplate {
 

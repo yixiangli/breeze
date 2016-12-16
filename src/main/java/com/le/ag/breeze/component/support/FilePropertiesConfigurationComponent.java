@@ -7,6 +7,17 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * @author liyixiang
+ * @Info
+ * * * @Company leEco
+ * * * @Email <liyixiang@le.com>
+ * * * @Team SmartConnected
+ * @date 2016年9月1日
+ * @since JDK 1.7
+ * @Function properties文件配置组件
+ */
 public class FilePropertiesConfigurationComponent extends PropertiesConfigurationComponent {
 
 	private static final Logger logger = LoggerFactory.getLogger(FilePropertiesConfigurationComponent.class);
