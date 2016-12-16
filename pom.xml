@@ -49,4 +49,17 @@
 		<version>18.0</version>
 	</dependency>
   </dependencies>
+  
+  <distributionManagement>
+	 <repository>
+	    <id>releases</id>
+	    <name>releases</name>
+	    <url>http://maven.letv.cn/nexus/content/repositories/releases/</url>
+	 </repository>
+	 <snapshotRepository>
+	    <id>snapshots</id>
+	    <name>snapshots</name>
+	    <url>http://maven.letv.cn/nexus/content/repositories/snapshots/</url>
+	 </snapshotRepository>
+	</distributionManagement>
 </project>
