@@ -16,7 +16,6 @@ import io.netty.util.ReferenceCountUtil;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,11 +24,8 @@ import com.le.ag.breeze.Constants;
 import com.le.ag.breeze.component.support.RateLimiterComponent;
 import com.le.ag.breeze.component.support.ServiceLocatorComponent;
 import com.le.ag.breeze.component.support.UrlRewriteComponent;
-import com.le.ag.breeze.exception.ServerException;
 import com.le.ag.breeze.message.HttpRequestMessageContext;
 import com.le.ag.breeze.message.RequestMessageFacade;
-import com.le.ag.breeze.support.WebClassLoader;
-import com.le.ag.breeze.util.BeanUtil;
 import com.le.ag.breeze.util.ReflectUtil;
 import com.le.ag.breeze.util.StringUtils;
 
@@ -62,17 +58,18 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		
 		//拦截favicon.ico请求
 		if(uri.endsWith(Constants.FAVICON_ICO)){
-			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
+			return HttpResponseStatus.NOT_FOUND.reasonPhrase();
 		}
 
 		//限流
-		boolean isLimit = RateLimiterComponent.limit(uri);
-		System.out.println(isLimit);
-		
+		if(!RateLimiterComponent.limit(uri)){
+			return HttpResponseStatus.TOO_MANY_REQUESTS.reasonPhrase();
+		}
+
 		//urlrewriter匹配
 		String reUri =  UrlRewriteComponent.urlMapping(uri);
 		if(StringUtils.isEmpty(reUri)){
-			throw new ServerException(HttpResponseStatus.NOT_FOUND.reasonPhrase());
+			return HttpResponseStatus.NOT_FOUND.reasonPhrase();
 		}
 		//重定向url注入
 		request.setRewriteUrl(reUri);
@@ -80,9 +77,9 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 		//请求method过滤 目前只是支持get post请求
 		String method = request.getMethod();
 		if(method != HttpMethod.POST.name() && method != HttpMethod.GET.name()){	
-			throw new ServerException(HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase());
+			return HttpResponseStatus.METHOD_NOT_ALLOWED.reasonPhrase();
 		}
-		return reUri;
+		return HttpResponseStatus.OK.reasonPhrase();
 	}
 
 	@Override

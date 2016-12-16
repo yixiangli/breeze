@@ -56,12 +56,21 @@ public class RateLimiterComponent  extends StandardComponent {
 		initRateLimitMap(getLimitConfig());
 	}
 
+	/**
+	 * 
+	 * @author liyixiang
+	 * @date 2016年12月16日 上午11:33:21
+	 * @descriptor 限流流程
+	 * @param uri
+	 * @return
+	 */
 	public static boolean limit(String uri){
-		//获取参数
+		//获取请求前缀
 		String url = interceptParam(uri);
 		//获取具体限流配置对象RateLimiter
         RateLimiter limiter = rateMap.get(url);
-        if (limiter == null || limiter.tryAcquire(10, TimeUnit.MILLISECONDS)) {
+        //100毫秒请求到limit
+        if (limiter == null || limiter.tryAcquire(100, TimeUnit.MILLISECONDS)) {
             return true;
         }
         logger.error("接口请求频率过高已被拦截，请求来源：{}", uri);
