@@ -1,0 +1,7 @@
+接入指南
+1.  实现ServiceLocator
+2.  配置properties
+	 2.1  线程池配置
+	 2.2  配置ServiceLocatorSupport
+3.	 继承启动器 BreezeServerFacade
+4.   编写Controller层 

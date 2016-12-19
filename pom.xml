@@ -2,24 +2,29 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- leEco organization  -->
   <organization>
   	<name>SmartConnected</name>
-  	<url></url>
+  	<url>smartlink.le.com</url>
   </organization>
   
+  <!-- developer -->
   <developers>
   	<developer>
   		<name>liyixiang</name>
   		<id>L008028</id>
   		<email>liyixiang@le.com</email>
-  		 <url>http://my.oschina.net/liyixiangBlog/blog</url>
+  		<url>http://www.fishfly.cn/</url>
+  		<roles>
+  			<role>developer 5</role>
+  		</roles>
   	</developer>
   </developers>
   
-  
+  <!-- project info -->
   <groupId>com.le.ag</groupId>
   <artifactId>breeze</artifactId>
-  <version>1.0.4</version>
+  <version>1.1</version>
   <packaging>jar</packaging>
   <name>breeze</name>
 
@@ -50,6 +55,7 @@
 	</dependency>
   </dependencies>
   
+  <!-- leEco Nexus -->
   <distributionManagement>
 	 <repository>
 	    <id>releases</id>

@@ -17,14 +17,28 @@ import com.le.ag.breeze.support.LifecycleSupport;
  */
 public abstract class LifecycleBase implements Lifecycle {
 
-	//组合
+	//组合形式
 	private LifecycleSupport lifecycle = new LifecycleSupport(this);
 	
+	/**
+	 * 维护初始化流程
+	 */
 	@Override
 	public void init() throws LifecycleException{
-		
+		/**
+		 * demo
+		 */
+		//fireLifecycleEvent()   启动监听器 监听部分事件
+		//initInternal()    与本身相关的初始化操作
 	}
 	
+	/**
+	 * 
+	 * @author liyixiang
+	 * @date 2016年12月19日 上午11:12:21
+	 * @descriptor 初始化操作
+	 * @throws LifecycleException
+	 */
 	protected abstract void initInternal() throws LifecycleException;
 
 	@Override
@@ -32,6 +46,13 @@ public abstract class LifecycleBase implements Lifecycle {
 		
 	}
 		
+	/**
+	 * 
+	 * @author liyixiang
+	 * @date 2016年12月19日 上午11:12:28
+	 * @descriptor
+	 * @throws LifecycleException
+	 */
 	protected abstract void startInternal() throws LifecycleException;
 
 	@Override

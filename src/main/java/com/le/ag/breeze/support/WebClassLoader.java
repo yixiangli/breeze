@@ -39,8 +39,8 @@ public class WebClassLoader extends ClassLoader{
 		try {
             return getClassLoader().loadClass(className);
         } catch (ClassNotFoundException ex) {
-        	logger.error("类加载异常",ex);
-            throw new ServerException("类加载异常",ex.getCause());
+        	logger.error("load class exception",ex);
+            throw new ServerException("load class error,please check your className",ex.getCause());
         }	
 	}
 	

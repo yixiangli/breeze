@@ -63,6 +63,7 @@ public class HttpProcessorTemplateSupport extends HttpProcessorTemplate{
 
 		//限流
 		if(!RateLimiterComponent.limit(uri)){
+	        logger.error("request frequency is too high, please wait a minute ,request source：{}", uri);
 			return HttpResponseStatus.TOO_MANY_REQUESTS.reasonPhrase();
 		}
 

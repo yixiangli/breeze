@@ -28,8 +28,7 @@ public interface Configuration {
 	 * @return
 	 */
 	public Integer getInt(String key);
-	
-	
+		
 	/**
 	 * 
 	 * @use 判断该key是否存在文件中

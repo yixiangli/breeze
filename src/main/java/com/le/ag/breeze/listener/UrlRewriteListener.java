@@ -30,7 +30,7 @@ public final class UrlRewriteListener implements LifecycleListener {
 		try{
 			component = (UrlRewriteComponent)event.getLifecycle();
 		}catch (ClassCastException e){
-			logger.error("",e);
+			logger.error("url rewriter component cast error",e);
 		}
 		
 		/**   开发示例demo

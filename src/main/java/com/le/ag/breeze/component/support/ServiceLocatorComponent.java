@@ -43,7 +43,7 @@ public class ServiceLocatorComponent extends StandardComponent {
 		}else {
 			serviceLocator = (ServiceLocator)WebLoader.getInstance(serviceLocatorClazz);
 			if (serviceLocator == null) {
-				logger.info("实例化类{}失败", serviceLocatorClazz);
+				logger.info("instantiate class {} fail", serviceLocatorClazz);
 			}
 		}
 	}

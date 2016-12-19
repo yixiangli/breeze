@@ -63,7 +63,7 @@ public class NettyConnectorSupport extends AsynConnector{
             ChannelFuture cf = bootstrap.bind(new InetSocketAddress(getPort())).sync();
             cf.channel().closeFuture().sync();
         } catch (Exception ex){
-        	logger.error("server start failure!",ex);
+        	logger.error("server start failure",ex);
         	ex.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();

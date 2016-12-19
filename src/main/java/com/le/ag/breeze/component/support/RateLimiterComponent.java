@@ -32,11 +32,13 @@ import com.le.ag.breeze.util.StringUtils;
  * @Function 限流组件
  * @Reason
  */
-public class RateLimiterComponent  extends StandardComponent {
+public class RateLimiterComponent extends StandardComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(RateLimiterComponent.class);
 
+    //限流配置 配置格式 url1:number1; url2:number2;   例: /user/order:400;  意为/user/order这个请求最大支持每秒400并发，超出的部分会被限流拦截 
     private String limitConfig;
+    //
     private static Map<String, RateLimiter> rateMap;
     
     /**
@@ -73,7 +75,6 @@ public class RateLimiterComponent  extends StandardComponent {
         if (limiter == null || limiter.tryAcquire(100, TimeUnit.MILLISECONDS)) {
             return true;
         }
-        logger.error("接口请求频率过高已被拦截，请求来源：{}", uri);
         return false;
 	}
 	
