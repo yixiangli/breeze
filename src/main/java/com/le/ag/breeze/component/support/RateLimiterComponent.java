@@ -96,8 +96,8 @@ public class RateLimiterComponent extends StandardComponent {
 	 * @descriptor 初始化限流map
 	 */
 	private void initRateLimitMap(String config){
+		rateMap = new ConcurrentHashMap<String, RateLimiter>();
 		if(StringUtils.isNotBlank(config)){
-			rateMap = new ConcurrentHashMap<String, RateLimiter>();
 	        Map<String, String> map = Splitter.on(";").omitEmptyStrings().trimResults().withKeyValueSeparator(":").split(config);
 	        for (Map.Entry<String, String> entry : map.entrySet()) {
 	        	long limit = 0 ;
