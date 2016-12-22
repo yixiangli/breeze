@@ -71,8 +71,8 @@ public class RateLimiterComponent extends StandardComponent {
 		String url = interceptParam(uri);
 		//获取具体限流配置对象RateLimiter
         RateLimiter limiter = rateMap.get(url);
-        //100毫秒请求到limit
-        if (limiter == null || limiter.tryAcquire(100, TimeUnit.MILLISECONDS)) {
+        //
+        if (limiter == null || limiter.tryAcquire()) {
             return true;
         }
         return false;
@@ -109,8 +109,10 @@ public class RateLimiterComponent extends StandardComponent {
 	        	}
 	            if (limit != 0) {
 	            	rateMap.put(entry.getKey(), RateLimiter.create(limit));
+	            	logger.info("limit key : "+entry.getKey() + "  limit number :"+limit);
 	            }
 	        }
+	        logger.info("rateLimit config is: "+config);
 		}
 	}
 
