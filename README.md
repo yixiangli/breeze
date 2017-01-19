@@ -3,13 +3,26 @@ breeze
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cyfonly/FLogger/blob/master/LICENSE)  [![Built with Maven](http://maven.apache.org/images/logos/maven-feather.png)](http://search.maven.org/#search%7Cga%7C1%7Ccyfonly)  
 
 ## Install
+下载jar
 
 ## Credits
-yixiangli
+yixiangli - 李轶翔
 
 ## Features
+http服务器基本功能
+1. 自定义请求路由规则，url重定向
+2. 支持get/post请求解析
+
+特色功能
+1.支持请求限流
+2.性能优良
+3.天生异步请求处理栈，线程池自定义配置
 
 ## Usage
+1.继承BreezeServerFacade,编写main函数
+2.配置urlrewrite.xml文件
+3.实现ServiceLocator接口，实现服务定位功能
+4.配置config.xml 引入properties,配置线程池&请求限流&服务定位功能等参数
 
 ## License
 基于 Apache License 2.0 发布。有关详细信息，请参阅 [LICENSE](https://github.com/yixiangli/breeze/blob/master/LICENSE)。
@@ -33,3 +46,16 @@ yixiangli
 2016-12-19 | v1.1     |  优化:添加注释,调整代码结构,编写接入指南文档与开发文档
 
 ## Manifest
+- breeze
+- - component
+- - - support
+- - connector
+- - - handler
+- - - processor
+- - - supoort
+- - listener
+- - event
+- - message
+- - service
+- - server
+- - util
