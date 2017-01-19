@@ -2,14 +2,19 @@ breeze
 ====
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cyfonly/FLogger/blob/master/LICENSE)  [![Built with Maven](http://maven.apache.org/images/logos/maven-feather.png)](http://search.maven.org/#search%7Cga%7C1%7Ccyfonly)  
 
+## Install
+
+## Credits
+yixiangli
+
 ## Features
 
 ## Usage
 
 ## License
-基于 Apache License 2.0 发布。有关详细信息，请参阅 [LICENSE](https://github.com)。
+基于 Apache License 2.0 发布。有关详细信息，请参阅 [LICENSE](https://github.com/yixiangli/breeze/blob/master/LICENSE)。
 
-##  
+## History
 发布日期 | 版本 | 备注
 --- | --- | --- 
 2016-4-15 | v1.0 	  |  发现:bug-1:请求路径按前缀匹配 bug-2:应用模块需要配置netty依赖 bug-3:post请求异常                 
@@ -26,3 +31,5 @@ breeze
 2016-8-31 | v1.0.3.5  |  整理:注释整理
 2016-12-15 | v1.0.4   |  解决:bug-5 Component组件监听器未注册 新增功能:请求限流
 2016-12-19 | v1.1     |  优化:添加注释,调整代码结构,编写接入指南文档与开发文档
+
+## Manifest
