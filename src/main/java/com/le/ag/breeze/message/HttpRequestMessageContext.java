@@ -2,7 +2,6 @@ package com.le.ag.breeze.message;
 
 import io.netty.handler.codec.http.Cookie;
 
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

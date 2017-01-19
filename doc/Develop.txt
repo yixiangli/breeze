@@ -1,3 +1,9 @@
 (1) 基于LifeCycle的开发模式
+统一生命周期管理
 (2) 组件化 Component
+ConfigurationComponent
+RateLimiterComponent
+ServiceLocatorComponent
+UrlRewriteComponent
+自定义组件
 (3) Listener事件监听机制

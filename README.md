@@ -1,6 +1,15 @@
-breeze upgrade log
+breeze
 ====
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cyfonly/FLogger/blob/master/LICENSE)  [![Built with Maven](http://maven.apache.org/images/logos/maven-feather.png)](http://search.maven.org/#search%7Cga%7C1%7Ccyfonly)  
 
+## Features
+
+## Usage
+
+## License
+基于 Apache License 2.0 发布。有关详细信息，请参阅 [LICENSE](https://github.com)。
+
+##  
 发布日期 | 版本 | 备注
 --- | --- | --- 
 2016-4-15 | v1.0 	  |  发现:bug-1:请求路径按前缀匹配 bug-2:应用模块需要配置netty依赖 bug-3:post请求异常                 
