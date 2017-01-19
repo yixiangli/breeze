@@ -10,19 +10,19 @@ yixiangli - 李轶翔
 
 ## Features
 http服务器基本功能
-1. 自定义请求路由规则，url重定向
-2. 支持get/post请求解析
+	1. 自定义请求路由规则，url重定向
+	2. 支持get/post请求解析
 
 特色功能
-1.支持请求限流
-2.性能优良
-3.天生异步请求处理栈，线程池自定义配置
+	1. 支持请求限流
+	2. 性能优良
+	3. 天生异步请求处理栈，线程池自定义配置
 
 ## Usage
-1.继承BreezeServerFacade,编写main函数
-2.配置urlrewrite.xml文件
-3.实现ServiceLocator接口，实现服务定位功能
-4.配置config.xml 引入properties,配置线程池&请求限流&服务定位功能等参数
+	1. 继承BreezeServerFacade,编写main函数
+	2. 配置urlrewrite.xml文件
+	3. 实现ServiceLocator接口，实现服务定位功能
+	4. 配置config.xml 引入properties,配置线程池&请求限流&服务定位功能等参数
 
 ## License
 基于 Apache License 2.0 发布。有关详细信息，请参阅 [LICENSE](https://github.com/yixiangli/breeze/blob/master/LICENSE)。
