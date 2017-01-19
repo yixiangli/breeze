@@ -46,17 +46,17 @@ yixiangli - 李轶翔
 2016-12-19 | v1.1     |  优化:添加注释,调整代码结构,编写接入指南文档与开发文档
 
 ## Manifest
-|- doc
-|  |- Develop.txt
-|  |- Guide.txt
-|- src
-|  |- main
-|     |- java
-|        |- com
-|          |- le
-|             |- ag
-|                |- breeze
-|- .gitignore
-|- LICENSE
-|- README.md
-|- pom.xml
+	|- doc
+	|  |- Develop.txt
+	|  |- Guide.txt
+	|- src
+	|  |- main
+	|     |- java
+	|        |- com
+	|          |- le
+	|             |- ag
+	|                |- breeze
+	|- .gitignore
+	|- LICENSE
+	|- README.md
+	|- pom.xml
