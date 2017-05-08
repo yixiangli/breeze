@@ -29,6 +29,7 @@ public class NettyConnectorListener implements LifecycleListener {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyConnectorListener.class);
 	
+    //监听器持有被监听的对象
     protected Connector connector;
     
 	@Override
