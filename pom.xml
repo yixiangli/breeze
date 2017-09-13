@@ -58,6 +58,7 @@
   </dependencies>
   
   <!-- leEco Nexus -->
+  <!--
   <distributionManagement>
 	 <repository>
 	    <id>releases</id>
@@ -70,4 +71,5 @@
 	    <url>http://maven.letv.cn/nexus/content/repositories/snapshots/</url>
 	 </snapshotRepository>
 	</distributionManagement>
+	-->
 </project>
