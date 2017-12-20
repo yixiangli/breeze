@@ -39,7 +39,7 @@ public class ServiceSupport extends LifecycleMBeanBase implements Service {
         components = results;     
         //注册监听
         if(null != listener){
-            component.addLifecycleListener(listener);
+            component.(listener);
         }
 	}
 
